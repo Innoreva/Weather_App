@@ -1,9 +1,12 @@
-package com.ersubhadip.instantweather
+package com.ersubhadip.instantweather.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
+
+import com.ersubhadip.instantweather.R
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -12,12 +15,13 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-        //todo : If possible then use SplashScreen with theme/Splash API/Fragment (to keep app lightweight😁)
-        lifecycleScope.launch {
+        //TODO : If possible then use SplashScreen with theme/Splash API/Fragment (to keep app lightweight😁)
+        lifecycleScope.launch(Dispatchers.Main) {
             delay(1000L)
-            val intent= Intent(this@SplashScreenActivity,MainActivity::class.java)
+            val intent= Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
-            finish()//remove this Activity from Task stack
+            finish()
+            //fix - nav component will be used later
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.ersubhadip.instantweather
+package com.ersubhadip.instantweather.api
 
 import com.ersubhadip.instantweather.pojos.CurrentModel
 import retrofit2.Response
