@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         //todo -> Call the API and check response
         lifecycleScope.launchWhenCreated {
             val response = try{
-                RetrofitInstance.api.getCurrent("1ab25b6036044fc0bf5122216220102","kanpur","no")
+                RetrofitInstance.api.getCurrent("1ab25b6036044fc0bf5122216220102","kanpur","yes")
             }catch (e: IOException){
                 Log.e(TAG,"IO Exception occurred : "+e.printStackTrace())
                 return@launchWhenCreated
