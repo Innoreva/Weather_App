@@ -14,7 +14,7 @@ class SplashScreenActivity : AppCompatActivity() {
 
         //todo : If possible then use SplashScreen with theme/Splash API/Fragment (to keep app lightweight😁)
         lifecycleScope.launch {
-            delay(2000L)
+            delay(1000L)
             val intent= Intent(this@SplashScreenActivity,MainActivity::class.java)
             startActivity(intent)
             finish()//remove this Activity from Task stack
