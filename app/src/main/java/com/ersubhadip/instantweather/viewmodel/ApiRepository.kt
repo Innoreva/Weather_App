@@ -7,9 +7,11 @@ import retrofit2.Response
 
 class ApiRepository(val api:RetrofitInstance) {
 
-    suspend fun getCurrentWeather():Response<CurrentModel>{
+    suspend fun getCurrentWeather(
+        q:String,aqi:String
+    ):Response<CurrentModel>{
 
-        return api.api.getCurrent(Constants.API_KEY,"Ranchi","yes");
+        return api.apiInstance.getCurrent(Constants.API_KEY,q,aqi);
     }
 
 }
