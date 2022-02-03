@@ -20,17 +20,17 @@ class MainActivity : AppCompatActivity() {
 
         //setting up navBar
         var bottomNavigation:MeowBottomNavigation=findViewById(R.id.bottomNavigationView)
-        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.ic_weather))
-        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_forecast))
+        bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.ic_forecast))
+        bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_weather))
         bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.ic_graph))
 
-        bottomNavigation.show(1,true)
+        bottomNavigation.show(2,true)
 
         bottomNavigation.setOnClickMenuListener {
             when(it.id){
-                1->Toast.makeText(this@MainActivity,"Home",LENGTH_SHORT).show()
+                1->Toast.makeText(this@MainActivity,"Forecast",LENGTH_SHORT).show()
 
-                2->Toast.makeText(this@MainActivity,"Forecast",LENGTH_SHORT).show()
+                2->Toast.makeText(this@MainActivity,"Home",LENGTH_SHORT).show()
 
                 3->Toast.makeText(this@MainActivity,"Weather Analytics",LENGTH_SHORT).show()
 

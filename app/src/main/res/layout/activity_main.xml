@@ -33,6 +33,7 @@
         app:mbn_rippleColor="#2f424242"
         app:mbn_selectedIconColor="#3c415e"
         app:mbn_shadowColor="#1f212121"
+        android:elevation="20dp"
          />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
