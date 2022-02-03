@@ -14,12 +14,16 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 
 class MainActivity : AppCompatActivity() {
 
+    //todo:setup accent color
+    //todo:font
+    //todo:forced white theme
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         //setting up navBar
-        var bottomNavigation:MeowBottomNavigation=findViewById(R.id.bottomNavigationView)
+        val bottomNavigation:MeowBottomNavigation=findViewById(R.id.bottomNavigationView)
         bottomNavigation.add(MeowBottomNavigation.Model(1,R.drawable.ic_forecast))
         bottomNavigation.add(MeowBottomNavigation.Model(2,R.drawable.ic_weather))
         bottomNavigation.add(MeowBottomNavigation.Model(3,R.drawable.ic_graph))
