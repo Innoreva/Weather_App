@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.ersubhadip.instantweather.R
 
-class CurrentWeatherFragment : Fragment() {
+class HomeFragment : Fragment() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,7 +19,7 @@ class CurrentWeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_current_weather, container, false)
+        return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
 }

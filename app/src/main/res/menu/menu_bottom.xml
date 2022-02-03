@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Today" />
+    <item
+        android:id="@+id/graphFragment"
+        android:icon="@drawable/ic_launcher_background"
+        android:title="Graph" />
+    <item
+        android:id="@+id/forecastFragment"
+        android:icon="@drawable/ic_launcher_foreground"
+        android:title="Forecast" />
+</menu>
