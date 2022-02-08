@@ -35,6 +35,5 @@ interface WeatherApiInterface {
     @GET("/v1/current.json")
     suspend fun getCurrent(@Query("key") key:String,@Query("q") q:String,@Query("aqi") aqi:String): Response<CurrentModel>
 
-
     //todo : also make forecast function
 }
