@@ -4,19 +4,32 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import android.widget.Toast.LENGTH_SHORT
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.transition.FragmentTransitionSupport
 import com.ersubhadip.instantweather.R
+import com.ersubhadip.instantweather.viewmodel.MainViewModel
 import com.etebarian.meowbottomnavigation.MeowBottomNavigation
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
 
     //todo:setup accent color
     //todo:font
+    //todo:fragment transaction deprecate -> NavGraph
+    //todo:colors.xml
+    //todo:current weather fragment -> ?
     //todo:forced white theme
+
+    lateinit var vm:MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +60,16 @@ class MainActivity : AppCompatActivity() {
 //            supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
 //        val navController = navHostFragment.navController
 
+        vm = ViewModelProvider(this)[MainViewModel::class.java];
+        GlobalScope.launch (Dispatchers.Main){
+
+            vm.getCurrentWeatherVM()
+
+        }
+
+
 
     }
+
+
 }

@@ -17,9 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.InstantWeather"
         tools:targetApi="31">
-        <activity
-            android:name=".ui.MainActivity2"
-            android:exported="false" />
+
         <activity
             android:name=".ui.SplashScreenActivity"
             android:exported="true">
