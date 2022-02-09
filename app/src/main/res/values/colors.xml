@@ -15,6 +15,7 @@
     <color name="blue_dark">#0069c0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="grey_white">#676764</color>
 
 
 </resources>
