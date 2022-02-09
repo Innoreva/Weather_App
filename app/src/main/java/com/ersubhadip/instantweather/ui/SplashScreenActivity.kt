@@ -3,6 +3,7 @@ package com.ersubhadip.instantweather.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
 import androidx.lifecycle.lifecycleScope
 
 import com.ersubhadip.instantweather.R
@@ -15,6 +16,7 @@ class SplashScreenActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
+        supportActionBar?.hide()
         //TODO : If possible then use SplashScreen with theme/Splash API/Fragment (to keep app lightweight😁)
         lifecycleScope.launch(Dispatchers.Main) {
             delay(1000L)
