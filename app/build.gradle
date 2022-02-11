@@ -73,6 +73,9 @@ dependencies {
     //location service
     implementation "com.google.android.gms:play-services-location:19.0.1"
 
+    //typewriter library
+    implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
+
 
 
 }

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black"
     tools:context=".ui.SplashScreenActivity">
 
 
@@ -11,26 +12,46 @@
         android:id="@+id/weatherAnimation"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="120dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="true"
-        app:lottie_fileName="weather_animation.json"
+        app:lottie_fileName="splash.json"
         app:lottie_loop="true"
         app:lottie_speed="1" />
 
     <TextView
         android:id="@+id/tvAppName"
-        style="@style/TextAppearance.AppCompat.Body1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/lato"
         android:text="@string/app_name"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@id/weatherAnimation"
-        app:layout_constraintEnd_toEndOf="@+id/weatherAnimation"
-        app:layout_constraintStart_toStartOf="@+id/weatherAnimation" />
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        android:layout_marginHorizontal="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weatherAnimation" />
+
+    <com.nitish.typewriterview.TypeWriterView
+        android:id="@+id/typeTv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginHorizontal="2dp"
+        android:fontFamily="@font/lato"
+        android:text=""
+        android:letterSpacing="0.2"
+        android:textAlignment="center"
+        android:textColor="@color/blue"
+        android:textSize="18sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvAppName" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
