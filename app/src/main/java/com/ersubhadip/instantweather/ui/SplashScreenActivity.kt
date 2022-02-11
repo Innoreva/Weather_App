@@ -2,8 +2,11 @@ package com.ersubhadip.instantweather.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.animation.AnimationUtils
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.airbnb.lottie.LottieAnimationView
 import com.ersubhadip.instantweather.R
 import com.nitish.typewriterview.TypeWriterView
 import com.nitish.typewriterview.TypeWriterView.OnAnimationChangeListener
@@ -16,19 +19,17 @@ class SplashScreenActivity : AppCompatActivity() {
     //todo:ViewBinding not getting applied in SplashActivity - Do Later
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_splash_screen)
 
-        supportActionBar?.hide()
+        //initialized Animation Utility Class
+        val animation = AnimationUtils.loadAnimation(applicationContext,R.anim.fade_in)
 
-        //delay for splash
-//        lifecycleScope.launch(Dispatchers.Main) {
-//            delay(1000L)
-//            val intent= Intent(this@SplashScreenActivity, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//            //fix - nav component will be used later
-//        }
+        //Icon Animation
+        findViewById<LottieAnimationView>(R.id.weatherAnimation).startAnimation(animation)
+
+        //Heading Text Animation
+        findViewById<TextView>(R.id.headTv).startAnimation(animation)
+
 
         //TypeWriter Text
          val typing = findViewById<TypeWriterView>(R.id.typeTv)
