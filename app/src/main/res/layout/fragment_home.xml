@@ -11,7 +11,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mainCard"
             android:layout_width="match_parent"
@@ -23,6 +22,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/clMainCard"
@@ -36,7 +36,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_margin"
-                    android:src="@drawable/ic_baseline_location_on_24"
+                    android:src="@drawable/ic_location"
+                    app:tint="@color/white"
                     app:layout_constraintStart_toStartOf="@id/clMainCard"
                     app:layout_constraintTop_toTopOf="@id/clMainCard" />
 
@@ -178,10 +179,10 @@
         </com.google.android.material.card.MaterialCardView>
 
 
-<!--        <include-->
-<!--            layout="@layout/custom_card"-->
+        <!--        <include-->
+        <!--            layout="@layout/custom_card"-->
 
-<!--            />-->
+        <!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
