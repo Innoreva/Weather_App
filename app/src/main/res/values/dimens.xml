@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <dimen name="normal_margin">8dp</dimen>
+    <dimen name="big_margin">16dp</dimen>
+    <dimen name="small_margin">4dp</dimen>
+
+    // font
+    <dimen name="default_font_size">18sp</dimen>
+    <dimen name="large_font_size">44sp</dimen>
+    <dimen name="small_font_size">14sp</dimen>
+    <dimen name="font_heading">24sp</dimen>
+
+</resources>
