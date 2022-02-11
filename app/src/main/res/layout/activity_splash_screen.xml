@@ -22,7 +22,7 @@
         app:lottie_speed="1" />
 
     <TextView
-        android:id="@+id/tvAppName"
+        android:id="@+id/headTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -51,7 +51,7 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvAppName" />
+        app:layout_constraintTop_toBottomOf="@id/headTv" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
