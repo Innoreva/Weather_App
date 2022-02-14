@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="1000dp"
     android:background="@color/blue_dark"
     tools:context=".ui.HomeFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/mainCard"
@@ -37,9 +38,9 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_margin"
                     android:src="@drawable/ic_location"
-                    app:tint="@color/white"
                     app:layout_constraintStart_toStartOf="@id/clMainCard"
-                    app:layout_constraintTop_toTopOf="@id/clMainCard" />
+                    app:layout_constraintTop_toTopOf="@id/clMainCard"
+                    app:tint="@color/white" />
 
 
                 <TextView
@@ -125,64 +126,77 @@
             app:layout_constraintTop_toBottomOf="@id/mainCard" />
 
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/weatherDetailsCard"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guidelineCenterVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent=".5" />
+
+        <include
+            android:id="@+id/cardTemperatureNow"
+            layout="@layout/custom_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/grey"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="8dp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="@id/mainCard"
-            app:layout_constraintStart_toStartOf="@id/mainCard"
-            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clWeatherDetailsCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tvApparentTemperature"
-                    style="@style/defaultTextAppearance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Apparent Temperature"
-                    android:textColor="@color/grey_light"
-                    android:textSize="@dimen/small_font_size"
-                    app:layout_constraintEnd_toEndOf="@id/guidelineCenterVertical"
-                    app:layout_constraintStart_toStartOf="@id/clWeatherDetailsCard"
-                    app:layout_constraintTop_toTopOf="@id/clWeatherDetailsCard" />
-
-                <TextView
-                    android:id="@+id/tvResultApparentTemperature"
-                    style="@style/defaultTextAppearance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="@dimen/normal_margin"
-                    android:text="14 C"
-                    android:textSize="@dimen/default_font_size"
-                    app:layout_constraintEnd_toEndOf="@id/tvApparentTemperature"
-                    app:layout_constraintStart_toStartOf="@id/tvApparentTemperature"
-                    app:layout_constraintTop_toBottomOf="@id/tvApparentTemperature" />
-
-                <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guidelineCenterVertical"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    app:layout_constraintGuide_percent=".5" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.card.MaterialCardView>
+            android:layout_margin="@dimen/normal_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails"
+            />
+        <include
+            android:id="@+id/cardHumidity"
+            layout="@layout/custom_card"
+            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails"
+            />
+        <include
+            android:id="@+id/cardWind"
+            layout="@layout/custom_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            app:layout_constraintTop_toBottomOf="@id/cardTemperatureNow"
+            />
+        <include
+            android:id="@+id/cardUltraVioletRays"
+            layout="@layout/custom_card"
+            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            app:layout_constraintTop_toBottomOf="@id/cardHumidity"
+            />
 
 
-        <!--        <include-->
-        <!--            layout="@layout/custom_card"-->
+        <include
+            android:id="@+id/cardVisibility"
+            layout="@layout/custom_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            app:layout_constraintTop_toBottomOf="@id/cardWind"
+            />
+        <include
+            android:id="@+id/cardAirPressure"
+            layout="@layout/custom_card"
+            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/normal_margin"
+            app:layout_constraintTop_toBottomOf="@id/cardUltraVioletRays"
+            >
 
-        <!--            />-->
+        </include>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>
