@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-
-    <com.google.android.material.card.MaterialCardView
-    android:backgroundTint="@color/grey"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:backgroundTint="@color/grey"
+    android:elevation="10dp"
     app:cardCornerRadius="8dp"
-    app:cardUseCompatPadding="true"
-    android:elevation="10dp">
+    app:cardUseCompatPadding="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/normal_margin"
+        android:orientation="vertical"
         android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:padding="@dimen/normal_margin">
 
         <TextView
-            android:id="@+id/tvDataParameter"
+            android:id="@+id/tvWeatherParameterName"
+            style="@style/defaultTextAppearance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/defaultTextAppearance"
             android:textColor="@color/grey_white"
-            android:gravity="center"
-            tools:text="Temperature"
+            android:text="Temperature"
             />
 
         <TextView
-            android:id="@+id/tvDataOutput"
+            android:id="@+id/tvWeatherParameterValue"
+            style="@style/defaultTextAppearance"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            style="@style/defaultTextAppearance"
             android:layout_marginTop="@dimen/small_margin"
-            tools:text="25 C"
-            />
+            android:gravity="center"
+            android:text="25 C" />
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>
-</LinearLayout>

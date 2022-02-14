@@ -9,9 +9,9 @@ import com.ersubhadip.instantweather.R
 
 class HomeFragment : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
@@ -22,4 +22,5 @@ class HomeFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_home, container, false)
 
     }
+
 }
