@@ -1,6 +1,7 @@
 package com.ersubhadip.instantweather.viewmodel
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Application
 import android.content.pm.PackageManager
 import android.location.Address
@@ -16,10 +17,13 @@ import java.util.*
 
 class LocationViewModel(application: Application):AndroidViewModel(application) {
 
+    @SuppressLint("StaticFieldLeak")
     private val context = getApplication<Application>().applicationContext
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     var PERMISSION_CODE = 1
 
+
+    //Implemented LocationManager to get the latitude and longitude of the user
     fun getLatLong():String{
 
         var cityName = ""
@@ -47,11 +51,13 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                 }
             }
 
-        Log.d("CITY",cityName)
+        Log.d("CITY",cityName) //junk code to test the code
 
           return cityName
 
     }
+
+//    Implemented Geocoder to get the cityName related to corresponding Latitude and Longitude
 
     private fun getPlace(lat:Double, long:Double):String{
         val addresses: List<Address>
