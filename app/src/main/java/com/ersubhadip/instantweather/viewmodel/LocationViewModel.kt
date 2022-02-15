@@ -20,7 +20,7 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
     @SuppressLint("StaticFieldLeak")
     private val context = getApplication<Application>().applicationContext
     private lateinit var fusedLocationClient: FusedLocationProviderClient
-    var PERMISSION_CODE = 1
+    private var PERMISSION_CODE = 1
 
 
     //Implemented LocationManager to get the latitude and longitude of the user
@@ -38,6 +38,8 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
+
+            PERMISSION_CODE = 2
             //TODO:CASE HANDLING FOR NOT GRANTING PERMISSION
         }
         fusedLocationClient.lastLocation
