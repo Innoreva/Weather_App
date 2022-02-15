@@ -1,11 +1,17 @@
 package com.ersubhadip.instantweather.ui
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.constraintlayout.helper.widget.Carousel
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.ersubhadip.instantweather.R
+import com.ersubhadip.instantweather.adapters.ForecastAdapter
+
+private var rvNextDayWeatherForecast: RecyclerView? = null
 
 class ForecastFragment : Fragment() {
 
@@ -18,8 +24,18 @@ class ForecastFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
+        val forecastAdapter = ForecastAdapter(requireContext())
+        val layoutManager = LinearLayoutManager(requireContext())
+
+        rvNextDayWeatherForecast = view?.findViewById<RecyclerView>(R.id.rvNextDayWeatherForecast)
+        rvNextDayWeatherForecast?.adapter = forecastAdapter
+        rvNextDayWeatherForecast?.layoutManager = layoutManager
+
+
+
         return inflater.inflate(R.layout.fragment_forecast, container, false)
+
     }
 
 }
