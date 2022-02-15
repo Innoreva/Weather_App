@@ -12,9 +12,9 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/graphFragment"
-        android:name="com.ersubhadip.instantweather.ui.GraphFragment"
+        android:name="com.ersubhadip.instantweather.ui.SearchFragment"
         android:label="Graph"
-        tools:layout="@layout/fragment_graph" />
+        tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/forecastFragment"
         android:name="com.ersubhadip.instantweather.ui.ForecastFragment"
