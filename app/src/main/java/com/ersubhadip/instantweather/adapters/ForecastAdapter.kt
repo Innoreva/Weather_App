@@ -20,7 +20,6 @@ class ForecastAdapter(val context : Context) : RecyclerView.Adapter<RecyclerView
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         TODO("Not yet implemented")
 
     }
