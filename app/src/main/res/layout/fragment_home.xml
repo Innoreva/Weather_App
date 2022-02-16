@@ -136,65 +136,63 @@
         <include
             android:id="@+id/cardTemperatureNow"
             layout="@layout/custom_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails"
-            />
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails" />
+
         <include
             android:id="@+id/cardHumidity"
             layout="@layout/custom_card"
-            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails" />
+
         <include
             android:id="@+id/cardWind"
             layout="@layout/custom_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintTop_toBottomOf="@id/cardTemperatureNow"
-            />
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardTemperatureNow" />
+
         <include
             android:id="@+id/cardUltraVioletRays"
             layout="@layout/custom_card"
-            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintTop_toBottomOf="@id/cardHumidity"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintTop_toBottomOf="@id/cardHumidity" />
 
 
         <include
             android:id="@+id/cardVisibility"
             layout="@layout/custom_card"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintTop_toBottomOf="@id/cardWind"
-            />
+            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardWind" />
+
         <include
             android:id="@+id/cardAirPressure"
             layout="@layout/custom_card"
-            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintEnd_toEndOf="parent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintTop_toBottomOf="@id/cardUltraVioletRays"
-            >
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
+            app:layout_constraintTop_toBottomOf="@id/cardUltraVioletRays">
 
         </include>
     </androidx.constraintlayout.widget.ConstraintLayout>
