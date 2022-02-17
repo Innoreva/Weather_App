@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.ersubhadip.instantweather.R
 import com.ersubhadip.instantweather.databinding.FragmentHomeBinding
-import com.ersubhadip.instantweather.viewmodel.LocationViewModel
 import com.ersubhadip.instantweather.viewmodel.MainViewModel
 
 class HomeFragment : Fragment() {
@@ -29,11 +29,18 @@ class HomeFragment : Fragment() {
         binding.mainViewModel = vm
         return view
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         vm= ViewModelProvider(this)[MainViewModel::class.java]
+
+        //Live data observer
+        vm.finalWeatherReport.observe(viewLifecycleOwner, Observer {
+            //it -> CurrentModel
+
+        })
+
+
 
     }
 
