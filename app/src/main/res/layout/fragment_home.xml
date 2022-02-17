@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="1000dp"
-    android:background="@color/blue_dark"
-    tools:context=".ui.HomeFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="mainViewModel"
+            type="com.ersubhadip.instantweather.viewmodel.MainViewModel" />    </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:background="@color/blue_dark"
+        tools:context=".ui.HomeFragment">
 
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mainCard"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/grey"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clMainCard"
+                android:id="@+id/MainCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/big_margin">
+                android:layout_marginHorizontal="@dimen/normal_margin"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/card"
+                android:elevation="20dp"
+                android:padding="@dimen/big_margin"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
                 <ImageView
@@ -38,17 +38,16 @@
                     android:layout_height="wrap_content"
                     android:padding="@dimen/small_margin"
                     android:src="@drawable/ic_location"
-                    app:layout_constraintStart_toStartOf="@id/clMainCard"
-                    app:layout_constraintTop_toTopOf="@id/clMainCard"
+                    app:layout_constraintStart_toStartOf="@id/MainCard"
+                    app:layout_constraintTop_toTopOf="@id/MainCard"
                     app:tint="@color/white" />
-
 
                 <TextView
                     android:id="@+id/tvCurrentLocation"
                     style="@style/defaultTextAppearance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Delhi"
+                    android:text="@{}"
                     app:layout_constraintBottom_toBottomOf="@+id/ivLocationIcon"
                     app:layout_constraintStart_toEndOf="@id/ivLocationIcon"
                     app:layout_constraintTop_toTopOf="@id/ivLocationIcon" />
@@ -59,8 +58,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin"
-                    android:text="25"
-                    android:textSize="@dimen/large_font_size"
+                    android:text="@{}"
+                    android:textSize="64sp"
                     app:layout_constraintStart_toStartOf="@+id/ivLocationIcon"
                     app:layout_constraintTop_toBottomOf="@+id/ivLocationIcon" />
 
@@ -80,121 +79,139 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin"
-                    android:text="Feb 9 Web"
+                    android:text="@{}"
                     android:textSize="@dimen/small_font_size"
                     app:layout_constraintStart_toStartOf="@+id/ivLocationIcon"
                     app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />
 
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottieWeatherInfo"
+                <ImageView
+                    android:id="@+id/weatherImage"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
+                    android:src="@drawable/ic_launcher_background"
                     app:layout_constraintBottom_toTopOf="@id/tvWeatherInfo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/ivLocationIcon"
-                    app:lottie_autoPlay="true"
-                    app:lottie_fileName="weather_animation.json"
-                    app:lottie_loop="true" />
+
+                    />
 
                 <TextView
                     android:id="@+id/tvWeatherInfo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/lato"
-                    android:text="Mostly Clear"
+                    android:text="@{}"
                     android:textColor="@color/white"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tvDateAndDay"
-                    app:layout_constraintEnd_toEndOf="@id/lottieWeatherInfo"
-                    app:layout_constraintStart_toStartOf="@id/lottieWeatherInfo" />
-
+                    app:layout_constraintEnd_toEndOf="@id/weatherImage"
+                    app:layout_constraintStart_toStartOf="@id/weatherImage" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <LinearLayout
+                android:id="@+id/ll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="2dp"
+                app:layout_constraintEnd_toEndOf="@id/MainCard"
+                app:layout_constraintTop_toBottomOf="@id/MainCard">
 
-        </com.google.android.material.card.MaterialCardView>
+                <TextView
+                    android:id="@+id/lastUpdatedTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/normal_margin"
+                    android:fontFamily="@font/lato"
+                    android:text="Last updated : 20 mins ago"
+                    android:textColor="@color/white"
+                    android:textStyle="italic" />
 
-        <TextView
-            android:id="@+id/tvWeatherDetails"
-            style="@style/defaultTextAppearance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/big_margin"
-            android:text="Weather Details"
-            android:textSize="@dimen/font_heading"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintStart_toStartOf="@id/mainCard"
-            app:layout_constraintTop_toBottomOf="@id/mainCard" />
+                <ImageView
+                    android:id="@+id/refreshBtn"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:src="@drawable/ic_refresh"
+                    app:tint="@color/white" />
+
+            </LinearLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginHorizontal="@dimen/normal_margin"
+                android:layout_marginTop="24dp"
+                android:backgroundTint="@color/grey"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!--               for fixed position-->
+
+                    <LinearLayout
+                        android:id="@+id/ll2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/small_margin"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/moreDetailsTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="start"
+                            android:layout_marginStart="@dimen/normal_margin"
+                            android:layout_marginTop="@dimen/big_margin"
+                            android:fontFamily="@font/lato"
+                            android:text="Weather Report"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/font_heading" />
+
+                        <ImageView
+                            android:id="@+id/expandBtn"
+                            android:layout_width="32dp"
+                            android:layout_height="32dp"
+                            android:layout_gravity="end"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?selectableItemBackground"
+                            android:src="@drawable/ic_down"
+                            app:tint="@color/white" />
 
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guidelineCenterVertical"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".5" />
+                    </LinearLayout>
 
-        <include
-            android:id="@+id/cardTemperatureNow"
-            layout="@layout/custom_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails" />
+                    <!--               for extended card-->
 
-        <include
-            android:id="@+id/cardHumidity"
-            layout="@layout/custom_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintTop_toBottomOf="@id/tvWeatherDetails" />
-
-        <include
-            android:id="@+id/cardWind"
-            layout="@layout/custom_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardTemperatureNow" />
-
-        <include
-            android:id="@+id/cardUltraVioletRays"
-            layout="@layout/custom_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintTop_toBottomOf="@id/cardHumidity" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintTop_toBottomOf="@id/ll2">
 
 
-        <include
-            android:id="@+id/cardVisibility"
-            layout="@layout/custom_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintEnd_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cardWind" />
+                    </LinearLayout>
 
-        <include
-            android:id="@+id/cardAirPressure"
-            layout="@layout/custom_card"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/normal_margin"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@id/guidelineCenterVertical"
-            app:layout_constraintTop_toBottomOf="@id/cardUltraVioletRays">
 
-        </include>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+            </androidx.cardview.widget.CardView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</layout>

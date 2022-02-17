@@ -17,6 +17,7 @@ android {
     }
     buildFeatures{
         viewBinding true
+        dataBinding true
     }
     buildTypes {
         release {
@@ -34,6 +35,14 @@ android {
 }
 
 dependencies {
+
+    def lifecycle_version = "2.5.0-alpha02"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+
+    // LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
@@ -75,7 +84,4 @@ dependencies {
 
     //typewriter library
     implementation 'com.github.NitishGadangi:TypeWriter-TextView:v1.3'
-
-
-
 }

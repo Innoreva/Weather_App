@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ersubhadip.instantweather.R
-import com.ersubhadip.instantweather.adapters.ForecastAdapter
+
 
 private var rvNextDayWeatherForecast: RecyclerView? = null
 
@@ -25,11 +25,11 @@ class ForecastFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val forecastAdapter = ForecastAdapter(requireContext())
+//        val forecastAdapter = ForecastAdapter(requireContext())
         val layoutManager = LinearLayoutManager(requireContext())
 
         rvNextDayWeatherForecast = view?.findViewById<RecyclerView>(R.id.rvNextDayWeatherForecast)
-        rvNextDayWeatherForecast?.adapter = forecastAdapter
+//        rvNextDayWeatherForecast?.adapter = forecastAdapter
         rvNextDayWeatherForecast?.layoutManager = layoutManager
 
 
