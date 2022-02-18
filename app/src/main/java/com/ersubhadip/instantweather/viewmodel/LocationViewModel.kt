@@ -72,7 +72,9 @@ class LocationViewModel(application: Application):AndroidViewModel(application) 
         ) // Here 1 represent max location result to returned, by documents it recommended 1 to 5
 
         for(address in addresses){
-            if(address!=null && TextUtils.isEmpty(address.toString())){
+            if(address!=null && !(TextUtils.isEmpty(address.toString()))){
+
+                Log.d("CIT",address.locality)
                 return address.locality
             }
         }
