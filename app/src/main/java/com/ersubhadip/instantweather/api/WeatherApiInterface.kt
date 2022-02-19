@@ -4,8 +4,6 @@ import androidx.lifecycle.LiveData
 import com.ersubhadip.instantweather.pojos.CurrentModel
 import retrofit2.Response
 import retrofit2.http.GET
-import retrofit2.http.HeaderMap
-import retrofit2.http.Headers
 import retrofit2.http.Query
 
 interface WeatherApiInterface {
