@@ -36,7 +36,7 @@ class Constants {
         val connectivityManager = context.getSystemService(ConnectivityManager::class.java)
         connectivityManager.requestNetwork(networkRequest,networkCallback)
 
-        //todo : Improve this code with more research
+        //todo : Improve this code with more research(remove deprecation)
         val networkInfo = connectivityManager.activeNetworkInfo?:return false
         return networkInfo.isConnected
     }
