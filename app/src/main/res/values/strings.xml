@@ -6,4 +6,8 @@
     <string name="homeFragment">Home</string>
     <string name="graphFragment">Graph</string>
     <string name="forecastFragment">Forecast </string>
+    <string name="co">Quantity of CO: %1$s</string>
+    <string name="no2">Quantity of NO2: %1$s</string>
+    <string name="o3">Quantity of O3: %1$s</string>
+    <string name="so2">Quantity of SO2: %1$s</string>
 </resources>

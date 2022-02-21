@@ -28,7 +28,7 @@ class ForecastFragment : Fragment() {
 //        val forecastAdapter = ForecastAdapter(requireContext())
         val layoutManager = LinearLayoutManager(requireContext())
 
-        rvNextDayWeatherForecast = view?.findViewById<RecyclerView>(R.id.rvNextDayWeatherForecast)
+        rvNextDayWeatherForecast = view?.findViewById<RecyclerView>(R.id.weatherForecastRv)
 //        rvNextDayWeatherForecast?.adapter = forecastAdapter
         rvNextDayWeatherForecast?.layoutManager = layoutManager
 
