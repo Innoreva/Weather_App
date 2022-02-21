@@ -1,127 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:background="@color/blue_dark"
     tools:context=".ui.ForecastFragment">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/headTv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_marginTop="18dp"
+        android:text="Today's Forecast"
+        android:textAlignment="center"
+        android:textColor="@color/grey_dark"
+        android:textSize="@dimen/font_heading"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/mainCard"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/grey"
-            app:cardCornerRadius="16dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clMainCard"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="@dimen/big_margin">
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weatherForecastRv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headTv"
+        android:layout_marginTop="32dp"
+        />
 
 
-                <ImageView
-                    android:id="@+id/ivLocationIcon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/small_margin"
-                    android:src="@drawable/ic_location"
-                    app:layout_constraintStart_toStartOf="@id/clMainCard"
-                    app:layout_constraintTop_toTopOf="@id/clMainCard"
-                    app:tint="@color/white" />
 
-
-                <TextView
-                    android:id="@+id/tvCurrentLocation"
-                    style="@style/defaultTextAppearance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Delhi"
-                    app:layout_constraintBottom_toBottomOf="@+id/ivLocationIcon"
-                    app:layout_constraintStart_toEndOf="@id/ivLocationIcon"
-                    app:layout_constraintTop_toTopOf="@id/ivLocationIcon" />
-
-                <TextView
-                    android:id="@+id/tvTemperature"
-                    style="@style/defaultTextAppearance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:text="25"
-                    android:textSize="@dimen/large_font_size"
-                    app:layout_constraintStart_toStartOf="@+id/ivLocationIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/ivLocationIcon" />
-
-                <TextView
-                    android:id="@+id/tvTemperatureScale"
-                    style="@style/defaultTextAppearance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="C"
-                    app:layout_constraintStart_toEndOf="@+id/tvTemperature"
-                    app:layout_constraintTop_toTopOf="@id/tvTemperature" />
-
-
-                <TextView
-                    android:id="@+id/tvDateAndDay"
-                    style="@style/defaultTextAppearance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/normal_margin"
-                    android:text="Feb 9 Web"
-                    android:textSize="@dimen/small_font_size"
-                    app:layout_constraintStart_toStartOf="@+id/ivLocationIcon"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />
-
-                <com.airbnb.lottie.LottieAnimationView
-                    android:id="@+id/lottieWeatherInfo"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    app:layout_constraintBottom_toTopOf="@id/tvWeatherInfo"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/ivLocationIcon"
-                    app:lottie_autoPlay="true"
-                    app:lottie_fileName="weather_animation.json"
-                    app:lottie_loop="true" />
-
-                <TextView
-                    android:id="@+id/tvWeatherInfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato"
-                    android:text="Mostly Clear"
-                    android:textColor="@color/white"
-                    app:layout_constraintBaseline_toBaselineOf="@+id/tvDateAndDay"
-                    app:layout_constraintEnd_toEndOf="@id/lottieWeatherInfo"
-                    app:layout_constraintStart_toStartOf="@id/lottieWeatherInfo" />
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-        </com.google.android.material.card.MaterialCardView>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvNextDayWeatherForecast"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-    </LinearLayout>
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

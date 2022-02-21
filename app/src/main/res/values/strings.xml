@@ -6,5 +6,5 @@
     <string name="homeFragment">Home</string>
     <string name="graphFragment">Graph</string>
     <string name="forecastFragment">Forecast </string>
-    <string name="try_again">Try Again</string>
+
 </resources>
