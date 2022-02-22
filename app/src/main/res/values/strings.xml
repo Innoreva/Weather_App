@@ -3,15 +3,19 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    // Fragments
     <string name="homeFragment">Home</string>
     <string name="graphFragment">Graph</string>
     <string name="forecastFragment">Forecast </string>
 
-    <string name="co">Quantity of CO: %1$s</string>
-    <string name="no2">Quantity of NO2: %1$s</string>
-    <string name="o3">Quantity of O3: %1$s</string>
-    <string name="so2">Quantity of SO2: %1$s</string>
+    //Air Quality Data
+    <string name="co">Quantity of CO : %1$.3f</string>
+    <string name="no2">Quantity of NO2 : %1$.3f</string>
+    <string name="o3">Quantity of O3 : %1$.3f</string>
+    <string name="so2">Quantity of SO2 : %1$.3f</string>
 
     <string name="try_again">Try Again</string>
+    <string name="air_quality">Air Quality</string>
+    <string name="temperature_scale">°C</string>
 
 </resources>

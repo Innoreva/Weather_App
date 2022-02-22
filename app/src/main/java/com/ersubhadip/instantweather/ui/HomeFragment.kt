@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
         vm.getLatLong() //junk
         //Live data observer
         binding.lifecycleOwner = this
-
     }
 
 }
