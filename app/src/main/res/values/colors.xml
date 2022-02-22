@@ -16,6 +16,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="grey_white">#676764</color>
+    <color name="blue_bg_variant">#1C5587</color>
 
 
 </resources>

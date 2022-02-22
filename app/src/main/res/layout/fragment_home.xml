@@ -69,7 +69,7 @@
                     style="@style/defaultTextAppearance"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="C"
+                    android:text="@string/temperature_scale"
                     app:layout_constraintStart_toEndOf="@+id/tvTemperature"
                     app:layout_constraintTop_toTopOf="@id/tvTemperature" />
 
@@ -207,10 +207,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:background="#1C5587"
+                android:background="@color/blue_bg_variant"
                 android:fontFamily="@font/lato"
                 android:paddingVertical="4dp"
-                android:text="Air Quality"
+                android:text="@string/air_quality"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_heading"
@@ -219,11 +219,13 @@
                 app:layout_constraintStart_toStartOf="@id/humidityTv"
                 app:layout_constraintTop_toBottomOf="@id/humidityTv" />
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:layout_marginTop="32dp"
+                android:padding="@dimen/normal_margin"
+                android:layout_marginTop="@dimen/big_margin"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="@id/airQualityHead"
                 app:layout_constraintStart_toStartOf="@id/airQualityHead"
@@ -231,23 +233,25 @@
 
                 <TextView
                     android:id="@+id/coTv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
                     android:fontFamily="@font/lato"
-                    android:padding="2dp"
+                    android:background="@drawable/card"
+                    android:textAlignment="viewStart"
+                    android:padding="@dimen/big_margin"
                     android:text="@{@string/co(mainViewModel.airQuality.co)}"
-                    android:textAlignment="textStart"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/no2Tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="@dimen/normal_margin"
                     android:fontFamily="@font/lato"
-                    android:padding="2dp"
+
+                    android:background="@drawable/card"
+                    android:padding="@dimen/big_margin"
                     android:text="@{@string/no2(mainViewModel.airQuality.no2)}"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
@@ -255,11 +259,13 @@
 
                 <TextView
                     android:id="@+id/o3Tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="@dimen/normal_margin"
+
                     android:fontFamily="@font/lato"
-                    android:padding="2dp"
+                    android:background="@drawable/card"
+                    android:padding="@dimen/big_margin"
                     android:text="@{@string/o3(mainViewModel.airQuality.o3)}"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
@@ -267,11 +273,12 @@
 
                 <TextView
                     android:id="@+id/so2Tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="@dimen/normal_margin"
                     android:fontFamily="@font/lato"
-                    android:padding="2dp"
+                    android:background="@drawable/card"
+                    android:padding="@dimen/big_margin"
                     android:text="@{@string/so2(mainViewModel.airQuality.so2)}"
                     android:textAlignment="textStart"
                     android:textColor="@color/white"
