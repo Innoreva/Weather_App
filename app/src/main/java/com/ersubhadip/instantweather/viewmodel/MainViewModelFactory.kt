@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 
 
-class MainViewModelFactory(private val apiRepo:ApiRepository,private val context: Context?):ViewModelProvider.Factory {
+class MainViewModelFactory(private val apiRepo:ApiRepository,private val context: Application?):ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(MainViewModel::class.java)){

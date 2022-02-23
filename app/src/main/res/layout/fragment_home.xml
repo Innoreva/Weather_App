@@ -87,10 +87,9 @@
 
                 <ImageView
                     android:id="@+id/weatherImage"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:elevation="20dp"
-                    android:url="@{mainViewModel.url}"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:scaleType="fitXY"
                     app:layout_constraintBottom_toTopOf="@id/tvWeatherInfo"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/ivLocationIcon" />
@@ -220,13 +219,12 @@
                 app:layout_constraintTop_toBottomOf="@id/humidityTv" />
 
 
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="@dimen/normal_margin"
                 android:layout_marginTop="@dimen/big_margin"
                 android:orientation="vertical"
+                android:padding="@dimen/normal_margin"
                 app:layout_constraintEnd_toEndOf="@id/airQualityHead"
                 app:layout_constraintStart_toStartOf="@id/airQualityHead"
                 app:layout_constraintTop_toBottomOf="@id/airQualityHead">
@@ -235,11 +233,11 @@
                     android:id="@+id/coTv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/lato"
                     android:background="@drawable/card"
-                    android:textAlignment="viewStart"
+                    android:fontFamily="@font/lato"
                     android:padding="@dimen/big_margin"
                     android:text="@{@string/co(mainViewModel.airQuality.co)}"
+                    android:textAlignment="viewStart"
                     android:textColor="@color/white"
                     android:textSize="18sp" />
 
@@ -248,9 +246,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin"
-                    android:fontFamily="@font/lato"
-
                     android:background="@drawable/card"
+
+                    android:fontFamily="@font/lato"
                     android:padding="@dimen/big_margin"
                     android:text="@{@string/no2(mainViewModel.airQuality.no2)}"
                     android:textAlignment="textStart"
@@ -262,9 +260,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin"
-
-                    android:fontFamily="@font/lato"
                     android:background="@drawable/card"
+                    android:fontFamily="@font/lato"
                     android:padding="@dimen/big_margin"
                     android:text="@{@string/o3(mainViewModel.airQuality.o3)}"
                     android:textAlignment="textStart"
@@ -276,8 +273,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/normal_margin"
-                    android:fontFamily="@font/lato"
                     android:background="@drawable/card"
+                    android:fontFamily="@font/lato"
                     android:padding="@dimen/big_margin"
                     android:text="@{@string/so2(mainViewModel.airQuality.so2)}"
                     android:textAlignment="textStart"
