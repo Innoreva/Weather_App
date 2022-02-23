@@ -61,7 +61,6 @@
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="@font/lato"
-            android:foreground="?selectableItemBackground"
             android:text="Search"
             android:textAlignment="center"
             android:textColor="@color/white"
