@@ -10,12 +10,18 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import com.ersubhadip.instantweather.R
 import com.ersubhadip.instantweather.api.RetrofitInstance
 import com.ersubhadip.instantweather.databinding.FragmentHomeBinding
 import com.ersubhadip.instantweather.viewmodel.ApiRepository
 import com.ersubhadip.instantweather.viewmodel.MainViewModel
 import com.ersubhadip.instantweather.viewmodel.MainViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Retrofit
 
 class HomeFragment : Fragment() {
@@ -46,9 +52,14 @@ class HomeFragment : Fragment() {
 
 
 
+        lifecycleScope.launch { withContext(Dispatchers.Main){
+            delay(2000)
+            binding.progressBar.visibility = View.GONE
+        } }
         //Calling ViewModelFunction for getting Weather Updates
         vm.getCurrentWeatherVM()
         vm.getLatLong() //junk
+
         //Live data observer
         binding.lifecycleOwner = this
     }
