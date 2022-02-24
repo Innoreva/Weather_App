@@ -25,11 +25,9 @@ import retrofit2.Response
 import java.util.*
 
 
-class MainViewModel(val repository: ApiRepository,val context: Context?) :
+class MainViewModel(private val repository: ApiRepository, val context: Application?) :
     ViewModel() {
 
-    @SuppressLint("StaticFieldLeak")
-//    private val context = getApplication<Application>().applicationContext
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var PERMISSION_CODE = 1
 
@@ -83,17 +81,29 @@ class MainViewModel(val repository: ApiRepository,val context: Context?) :
     val updateTime: LiveData<String>
         get() = updTime
 
+    //City
+    private var city = MutableLiveData<String>()
+    val liveCity: LiveData<String>
+        get() = city
+
 
     //default values
     init {
-        receivedLocation.value = "Delhi"
+
         updTime.value = "not fetched"
+        getLatLong()
+    }
+
+    //Update Feature
+    fun updateWeather() {
+
+        //todo:fake 1000ms loading
+        getCurrentWeatherVM()
+
     }
 
     //Implemented LocationManager to get the latitude and longitude of the user
-    fun getLatLong(): String {
-
-        var city = "Delhi"
+    fun getLatLong() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
 
@@ -106,28 +116,36 @@ class MainViewModel(val repository: ApiRepository,val context: Context?) :
             ) != PackageManager.PERMISSION_GRANTED
         ) {
 
+            Toast.makeText(
+                context,
+                "NO Permission, Please Grant the Location permission",
+                Toast.LENGTH_LONG
+            ).show()
+
             PERMISSION_CODE = 2
-            //TODO:CASE HANDLING FOR NOT GRANTING PERMISSION
+            //TODO:CASE HANDLING FOR NOT GRANTING PERMISSION - Redirect to Settings
         }
+
+        Log.d("CODE_#", PERMISSION_CODE.toString())
+
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 // location can be null.
-                if (location != null) {
+                Log.d("LOC#", location.toString())
+                var lat = location!!.latitude
+                var long = location.longitude
 
-                    val lat = location.latitude
-                    val long = location.longitude
-                    city = getPlace(lat, long)
-                }
+                getPlace(lat, long)
+                Log.d("LOC##", city.value.toString()) //Tested - OK
+
             }
 
-        Log.d("CITY", city) //junk code to test the code
-
-        return city
+        Log.d("LOC###", city.value.toString()) //-> null
     }
 
 //    Implemented Geocoder to get the cityName related to corresponding Latitude and Longitude
 
-    private fun getPlace(lat: Double, long: Double): String {
+    private fun getPlace(lat: Double, long: Double) {
         val addresses: List<Address>
         val geocoder = Geocoder(context, Locale.getDefault())
 
@@ -136,51 +154,42 @@ class MainViewModel(val repository: ApiRepository,val context: Context?) :
             long,
             1
         )
-
-
-        Log.i("City",addresses.first().locality)
-        return addresses.first().locality
-
+        Log.d("###", addresses.first().locality) // Tested - OK
+        city.value = addresses.first().locality
     }
 
     fun getCurrentWeatherVM() {
 
         viewModelScope.launch {
-            val response = repository.getCurrentWeather("Dhanbad", "yes")
+            val response = city.value?.let { repository.getCurrentWeather(it, "yes") }
 
+            if (response != null) {
+                if (response.isSuccessful) {
 
-            if (response.isSuccessful) {
+                    weatherDetails.value = response.body()
 
-                weatherDetails.value = response.body()
+                    //Getting Data to LiveData variables
+                    receivedLocation.value = "${weatherDetails.value!!.location.name }, ${weatherDetails.value!!.location.country}"
+                    temp.value = weatherDetails.value!!.current.temp_c
+                    time.value = weatherDetails.value!!.location.localtime
+                    air.value = weatherDetails.value!!.current.air_quality
+                    current.value = weatherDetails.value!!.current
+                    cond.value = weatherDetails.value!!.current.condition
+                    iconUrl.value ="https:${weatherDetails.value!!.current.condition.icon}"
+                    updTime.value = "Last Updated: ${weatherDetails.value!!.current.last_updated}"
+                    //end
 
-                //Getting Data to LiveData variables
-                receivedLocation.value = weatherDetails.value!!.location.name
-                temp.value = weatherDetails.value!!.current.temp_c
-                time.value = weatherDetails.value!!.location.localtime
-                air.value = weatherDetails.value!!.current.air_quality
-                current.value = weatherDetails.value!!.current
-                cond.value = weatherDetails.value!!.current.condition
-                iconUrl.value = weatherDetails.value!!.current.condition.icon
-                updTime.value = "Last Updated: ${weatherDetails.value!!.current.last_updated}"
-                //end
-
-            } else {
-                Toast.makeText(context, "Something Went Wrong - API", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_LONG).show()
+                }
+              }
             }
-
         }
-
-
     }
 
-    fun updateWeather(){
-
-        //todo:fake 1000ms loading
-        getCurrentWeatherVM()
-    }
 
 
 
     // todo:Null Response (404), Permissions (check and inflate Permission Denied), No internet -> Try Again (last implementation)
-}
+
 

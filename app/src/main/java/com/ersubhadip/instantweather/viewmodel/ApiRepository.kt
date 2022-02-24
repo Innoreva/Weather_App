@@ -6,17 +6,22 @@ import androidx.lifecycle.MutableLiveData
 import com.ersubhadip.instantweather.Constants
 import com.ersubhadip.instantweather.api.RetrofitInstance
 import com.ersubhadip.instantweather.pojos.CurrentModel
+import com.ersubhadip.instantweather.pojos.ForecastModel
 import retrofit2.Response
 
-class ApiRepository(private val api:RetrofitInstance) {
+class ApiRepository(private val api: RetrofitInstance) {
     suspend fun getCurrentWeather(
-        q:String,aqi:String
-    ):Response<CurrentModel> {
+        q: String, aqi: String
+    ): Response<CurrentModel> {
+        return api.apiInstance.getCurrent(Constants.API_KEY, q, aqi)
+    }
 
-        Log.d("#JatinBhai#",api.apiInstance.getCurrent(Constants.API_KEY,"Delhi","yes")
+    suspend fun getForecast(
+        q: String, days: Int, aqi: String, alerts: String
+    ): Response<ForecastModel> {
 
-            .toString())
-        return api.apiInstance.getCurrent(Constants.API_KEY,q,aqi)
+
+        return api.apiInstance.getForecast(Constants.API_KEY, q, days, aqi, alerts)
     }
 
 }

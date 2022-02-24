@@ -1,37 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/custom_bg"
-    tools:context=".ui.SearchFragment">
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="searchViewModel"
+            type="com.ersubhadip.instantweather.viewmodel.SearchViewModel" />
+    </data>
 
 
-    <SearchView
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/searchConstraints"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/normal_margin"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/search_view"
-        android:elevation="20dp"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search Places"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_bg"
+        tools:context=".ui.SearchFragment">
 
-    <ProgressBar
-        android:id="@+id/indeterminateProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        <ProgressBar
+            android:id="@+id/indeterminateProgressBar"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:elevation="20dp"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/normal_margin"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/search_view"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="2dp"
+            android:fontFamily="@font/lato"
+            android:hint="Search Places"
+            android:iconifiedByDefault="false"
+            android:inputType="text"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="6dp"
+            android:text="@={searchViewModel.input}"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/searchBtn"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="@dimen/normal_margin"
+            android:backgroundTint="@color/blue_bg_variant"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/lato"
+            android:text="Search"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@id/searchBar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/searchBar"
+            app:layout_constraintTop_toTopOf="@id/searchBar" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/outputCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/normal_margin"
+            android:layout_marginTop="120dp"
+            android:background="@drawable/card"
+            android:elevation="20dp"
+            android:paddingHorizontal="@dimen/big_margin"
+            android:paddingVertical="32dp"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchBar">
+
+            <ImageView
+                android:id="@+id/ivLocationIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_margin"
+                android:src="@drawable/ic_location"
+                app:layout_constraintStart_toStartOf="@id/outputCard"
+                app:layout_constraintTop_toTopOf="@id/outputCard"
+                app:tint="@color/white" />
+
+            <TextView
+                android:id="@+id/tvCurrentLocation"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{searchViewModel.finalLocation}"
+                app:layout_constraintBottom_toBottomOf="@+id/ivLocationIcon"
+                app:layout_constraintStart_toEndOf="@id/ivLocationIcon"
+                app:layout_constraintTop_toTopOf="@id/ivLocationIcon" />
+
+            <TextView
+                android:id="@+id/tvTemperature"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:text="@{Double.toString(searchViewModel.finalWeatherReport.current.temp_c)}"
+                android:textSize="64sp"
+                app:layout_constraintStart_toStartOf="@+id/ivLocationIcon"
+                app:layout_constraintTop_toBottomOf="@+id/ivLocationIcon" />
+
+            <TextView
+                android:id="@+id/tvTemperatureScale"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/temperature_scale"
+                app:layout_constraintStart_toEndOf="@+id/tvTemperature"
+                app:layout_constraintTop_toTopOf="@id/tvTemperature" />
+
+
+            <TextView
+                android:id="@+id/tvDateAndDay"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/normal_margin"
+                android:text="@{searchViewModel.finalWeatherReport.location.localtime}"
+                android:textSize="@dimen/small_font_size"
+                app:layout_constraintStart_toStartOf="@+id/ivLocationIcon"
+                app:layout_constraintTop_toBottomOf="@+id/tvTemperature" />
+
+            <ImageView
+                android:id="@+id/weatherImage"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toTopOf="@id/tvWeatherInfo"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/ivLocationIcon" />
+
+            <TextView
+                android:id="@+id/tvWeatherInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/lato"
+                android:text="@{searchViewModel.finalWeatherReport.current.condition.text}"
+                android:textColor="@color/white"
+                app:layout_constraintBaseline_toBaselineOf="@+id/tvDateAndDay"
+                app:layout_constraintEnd_toEndOf="@id/weatherImage"
+                app:layout_constraintStart_toStartOf="@id/weatherImage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
