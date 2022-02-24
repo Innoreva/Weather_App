@@ -89,7 +89,6 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
 
     //default values
     init {
-
         updTime.value = "not fetched"
         getLatLong()
     }
@@ -136,11 +135,11 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
                 var long = location.longitude
 
                 getPlace(lat, long)
-                Log.d("LOC##", city.value.toString()) //Tested - OK
+
 
             }
 
-        Log.d("LOC###", city.value.toString()) //-> null
+
     }
 
 //    Implemented Geocoder to get the cityName related to corresponding Latitude and Longitude
@@ -154,7 +153,7 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
             long,
             1
         )
-        Log.d("###", addresses.first().locality) // Tested - OK
+
         city.value = addresses.first().locality
     }
 

@@ -34,8 +34,6 @@ class SearchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_search, container, false)
         val view = binding.root
         val repo = ApiRepository(RetrofitInstance)
