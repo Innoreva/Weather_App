@@ -13,7 +13,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ersubhadip.instantweather.pojos.ForecastAdapterModel
 import com.ersubhadip.instantweather.pojos.Forecastday
+import com.ersubhadip.instantweather.pojos.Hour
+import com.ersubhadip.instantweather.pojos.toForecastAdapterModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.launch
@@ -26,8 +29,8 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     //Forecast Model Live Data
-    private var forecast = MutableLiveData<List<Forecastday>>()
-    val forecastDetails: LiveData<List<Forecastday>>
+    private var forecast = MutableLiveData<List<ForecastAdapterModel>>()
+    val forecastDetails: LiveData<List<ForecastAdapterModel>>
         get() = forecast
 
     //City
@@ -104,7 +107,7 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
             if (response != null) {
                 if (response.isSuccessful) {
 
-                    forecast.value = response.body()?.forecast?.forecastday
+                    forecast.value = response.body()?.forecast?.forecastday?.first()?.hour?.map {it.toForecastAdapterModel()}
 
 
                 } else {
@@ -125,4 +128,6 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
 
         }
     }
+
+
 }
