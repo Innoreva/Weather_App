@@ -5,7 +5,11 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
-
+def getApiKey(){
+    def Properties props = new Properties()
+    props.load(new FileInputStream(new File('apikey.properties')))
+    return props['API_KEY']
+}
 android {
     compileSdk 31
 
@@ -17,9 +21,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        each { type ->
-            type.buildConfigField 'String', 'API_KEY', API_KEY
-        }
+        manifestPlaceholders= [API_KEY :getApiKey()]
+
     }
     buildFeatures{
         dataBinding true
@@ -28,6 +31,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        applicationVariants.all { variant ->
+            variant.buildConfigField "String", "API_KEY" , "\""+getApiKey()+"\""
         }
 
     }
