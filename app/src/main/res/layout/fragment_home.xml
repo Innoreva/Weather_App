@@ -137,9 +137,10 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:foreground="?selectableItemBackground"
-                    android:onClick="@{()->mainViewModel.updateWeather()}"
                     android:src="@drawable/ic_refresh"
                     app:tint="@color/white" />
+
+<!--                android:onClick="@{()->mainViewModel.updateWeather()}"-->
 
             </LinearLayout>
 

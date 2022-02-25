@@ -16,6 +16,7 @@ import com.ersubhadip.instantweather.databinding.FragmentHomeBinding
 import com.ersubhadip.instantweather.viewmodel.ApiRepository
 import com.ersubhadip.instantweather.viewmodel.MainViewModel
 import com.ersubhadip.instantweather.viewmodel.MainViewModelFactory
+import kotlinx.coroutines.*
 
 class HomeFragment : Fragment() {
     lateinit var vm: MainViewModel
@@ -50,13 +51,38 @@ class HomeFragment : Fragment() {
             }
         })
 
+
         binding.lifecycleOwner = this
 
         vm.liveCity.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrBlank()) {
-                vm.getCurrentWeatherVM()
+                // fake loading
+                binding.progressBar.visibility = View.VISIBLE
+
+                CoroutineScope(Dispatchers.IO).launch {
+                    vm.getCurrentWeatherVM()
+                    withContext(Dispatchers.Main){
+                        binding.progressBar.visibility= View.GONE
+
+                    }
+                }
+
+
             }
         })
+
+        binding.refreshBtn.setOnClickListener{
+            binding.progressBar.visibility = View.VISIBLE
+            CoroutineScope(Dispatchers.IO).launch{
+                vm.updateWeather()
+                withContext(Dispatchers.Main){
+                    binding.progressBar.visibility = View.GONE
+                }
+            }
+
+//
+
+        }
     }
 
 }
