@@ -20,7 +20,9 @@ import com.ersubhadip.instantweather.pojos.Current
 import com.ersubhadip.instantweather.pojos.CurrentModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import retrofit2.Response
 import java.util.*
 
@@ -94,9 +96,9 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
     }
 
     //Update Feature
-    fun updateWeather() {
+    suspend  fun updateWeather() {
 
-        //todo:fake 1000ms loading
+        //fake loading done in home fragment
         getCurrentWeatherVM()
 
     }
@@ -157,11 +159,10 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
         city.value = addresses.first().locality
     }
 
-    fun getCurrentWeatherVM() {
+    suspend fun getCurrentWeatherVM() {
 
-        viewModelScope.launch {
             val response = city.value?.let { repository.getCurrentWeather(it, "yes") }
-
+            kotlinx.coroutines.withContext(Dispatchers.Main){
             if (response != null) {
                 if (response.isSuccessful) {
 
@@ -181,12 +182,11 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
                 } else {
                     Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_LONG).show()
                 }
-              }
+                }
             }
-        }
     }
 
-
+}
 
 
     // todo:Null Response (404), Permissions (check and inflate Permission Denied), No internet -> Try Again (last implementation)

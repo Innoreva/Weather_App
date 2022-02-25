@@ -5,9 +5,9 @@ import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.ersubhadip.instantweather.pojos.CurrentModel
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class SearchViewModel(private val repository: ApiRepository, private val context: Application?) :
     ViewModel() {
@@ -21,6 +21,7 @@ class SearchViewModel(private val repository: ApiRepository, private val context
     val finalWeatherReport: LiveData<CurrentModel>
         get() = weatherDetails
 
+
     //Location Live data
     private var receivedLocation = MutableLiveData<String>()
     val finalLocation: LiveData<String>
@@ -32,20 +33,20 @@ class SearchViewModel(private val repository: ApiRepository, private val context
         get() = url
 
 
-    fun getWeather() {
-        viewModelScope.launch {
-            val response = input.value?.let { repository.getCurrentWeather(it, "yes") }
+    suspend fun getWeather() {
 
-            if (response != null) {
+        val response = input.value?.let { repository.getCurrentWeather(it, "yes") }
+        if (response != null) {
+            withContext(Dispatchers.Main) {
                 if (response.isSuccessful) {
-
                     weatherDetails.value = response.body()
                     receivedLocation.value =
                         "${weatherDetails.value!!.location.name}, ${weatherDetails.value!!.location.country}"
                     url.value = "https:${weatherDetails.value!!.current.condition.icon}"
 
+                }
+                else {
 
-                } else {
                     Toast.makeText(
                         context,
                         "Something Went Wrong. Check your input",
@@ -55,5 +56,4 @@ class SearchViewModel(private val repository: ApiRepository, private val context
             }
         }
     }
-
 }

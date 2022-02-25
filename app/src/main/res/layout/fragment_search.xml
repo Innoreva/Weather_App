@@ -18,17 +18,8 @@
         android:background="@drawable/ic_bg"
         tools:context=".ui.SearchFragment">
 
-        <ProgressBar
-            android:id="@+id/indeterminateProgressBar"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:elevation="20dp"
-            android:indeterminateTint="@color/white"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+
+
 
         <EditText
             android:id="@+id/searchBar"
@@ -158,6 +149,19 @@
                 app:layout_constraintEnd_toEndOf="@id/weatherImage"
                 app:layout_constraintStart_toStartOf="@id/weatherImage" />
 
+
+
+            <ProgressBar
+                android:id="@+id/indeterminateProgressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:elevation="20dp"
+                android:indeterminateTint="@color/white"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/searchBar" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

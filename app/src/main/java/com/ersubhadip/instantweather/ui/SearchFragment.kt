@@ -1,7 +1,6 @@
 package com.ersubhadip.instantweather.ui
 
 import android.app.Application
-import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
@@ -19,11 +18,15 @@ import com.ersubhadip.instantweather.databinding.FragmentSearchBinding
 import com.ersubhadip.instantweather.viewmodel.ApiRepository
 import com.ersubhadip.instantweather.viewmodel.SearchViewModel
 import com.ersubhadip.instantweather.viewmodel.SearchViewModelFactory
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SearchFragment : Fragment() {
 
-    lateinit var binding: FragmentSearchBinding
+    private lateinit var binding: FragmentSearchBinding
     lateinit var viewModel: SearchViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,29 +52,35 @@ class SearchFragment : Fragment() {
 
         binding.searchBtn.setOnClickListener {
 
+           binding.indeterminateProgressBar.visibility = View.VISIBLE
+
             if (!TextUtils.isEmpty(binding.searchBar.text)) {
                 //Loading starts
                 binding.indeterminateProgressBar.visibility = View.VISIBLE
-                //todo:Fake loading
-                //Making Invisible
-                binding.searchConstraints.setBackgroundColor(Color.parseColor("#0069c0"))
 
-                //Visible the weather Report
-                viewModel.getWeather()
-                viewModel.imageUrl.observe(viewLifecycleOwner, Observer {
-                    context?.let { it1 ->
-                        Glide.with(it1.applicationContext).load(it).into(binding.weatherImage)
+                CoroutineScope(Dispatchers.IO).launch {
+                    viewModel.getWeather()
+                    withContext(Dispatchers.Main) {
+                        viewModel.imageUrl.observe(viewLifecycleOwner, Observer {
+                            context?.let { it1 ->
+                                Glide.with(it1.applicationContext).load(it)
+                                    .into(binding.weatherImage)
+                            }
+                        })
+                        binding.outputCard.visibility = View.VISIBLE
+                        binding.indeterminateProgressBar.visibility = View.GONE
+
                     }
-                })
-                binding.outputCard.visibility = View.VISIBLE
-                binding.indeterminateProgressBar.visibility = View.GONE
+                }
             } else {
                 binding.searchBar.error = "Please enter a place"
             }
 
+
+
         }
 
-        binding.searchBar.setOnClickListener {
+        binding.searchBar.setOnClickListener{
 
             //Removing the card on another search
             binding.searchConstraints.setBackgroundDrawable(context?.let { it1 ->
@@ -83,8 +92,12 @@ class SearchFragment : Fragment() {
 
         }
 
-
     }
+
+//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+//        super.onViewCreated(view, savedInstanceState)
+//
+//    }
 
 
 }
