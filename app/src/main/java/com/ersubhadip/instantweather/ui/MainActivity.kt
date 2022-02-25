@@ -10,14 +10,7 @@ import com.etebarian.meowbottomnavigation.MeowBottomNavigation
 
 
 class MainActivity : AppCompatActivity() {
-    //DONE:
-    //setup accent color
-    //colors.xml
-    //setting up the navigation for bottom bar
-    //TODO
-    //font -> pending
-    //current weather fragment -> ?
-    //forced white theme and vertical orientation
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -60,6 +53,7 @@ class MainActivity : AppCompatActivity() {
                 else -> Toast.makeText(this@MainActivity,"Hello",LENGTH_SHORT).show()
             }
         }
+
 
     }
 

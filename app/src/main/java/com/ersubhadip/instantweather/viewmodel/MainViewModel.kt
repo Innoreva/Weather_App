@@ -23,9 +23,9 @@ import com.google.android.gms.location.LocationServices
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import pub.devrel.easypermissions.EasyPermissions
 import retrofit2.Response
 import java.util.*
-
 
 class MainViewModel(private val repository: ApiRepository, val context: Application?) :
     ViewModel() {
@@ -95,52 +95,34 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
         getLatLong()
     }
 
-    //Update Feature
-    suspend  fun updateWeather() {
 
-        //fake loading done in home fragment
-        getCurrentWeatherVM()
 
+    fun hasLocationPermissions() :Boolean
+    {
+        if((ActivityCompat.checkSelfPermission(context!!, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) && (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED))
+              return true
+        return false
     }
 
     //Implemented LocationManager to get the latitude and longitude of the user
     fun getLatLong() {
-
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
 
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            Toast.makeText(
-                context,
-                "NO Permission, Please Grant the Location permission",
-                Toast.LENGTH_LONG
-            ).show()
-
+        if(!hasLocationPermissions()) {
+            showToast("NO Permission, Please Grant the Location permission")
             PERMISSION_CODE = 2
-            //TODO:CASE HANDLING FOR NOT GRANTING PERMISSION - Redirect to Settings
+            //TODO:CASE HANDLING FOR NOT GRANTING PERMISSION -> Redirect to Settings
         }
 
         Log.d("CODE_#", PERMISSION_CODE.toString())
-
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->
                 // location can be null.
                 Log.d("LOC#", location.toString())
                 var lat = location!!.latitude
                 var long = location.longitude
-
                 getPlace(lat, long)
-
-
             }
-
 
     }
 
@@ -185,8 +167,13 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
                 }
             }
     }
+    fun showToast(toastMessage :  String){
+        Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
+    }
 
 }
+
+
 
 
     // todo:Null Response (404), Permissions (check and inflate Permission Denied), No internet -> Try Again (last implementation)
