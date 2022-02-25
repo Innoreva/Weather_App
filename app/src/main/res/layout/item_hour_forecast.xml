@@ -1,64 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp"
-    app:cardBackgroundColor="@color/grey"
-    app:cardCornerRadius="@dimen/normal_margin"
-    >
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+        <variable
+            name="adapterViewModel"
+            type="com.ersubhadip.instantweather.viewmodel.ForecastViewModel" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingHorizontal="2dp"
-        android:paddingVertical="32dp">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:clickable="false"
+        app:cardBackgroundColor="@color/grey"
+        app:cardCornerRadius="@dimen/normal_margin">
 
-        <TextView
-            android:id="@+id/tvTemperature"
-            style="@style/defaultTextAppearance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/small_margin"
-            android:text="28"
-            android:textSize="36sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="2dp"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="32dp">
 
+            <TextView
+                android:id="@+id/tvTemperature"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_margin"
+                android:text="28"
+                android:textSize="36sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/tvTemperatureScale"
-            style="@style/defaultTextAppearance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/small_margin"
-            android:text="C"
-            app:layout_constraintStart_toEndOf="@id/tvTemperature"
-            app:layout_constraintTop_toTopOf="@id/tvTemperature" />
+            <TextView
+                android:id="@+id/tvTemperatureScale"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/small_margin"
+                android:text="@string/temperature_scale"
+                app:layout_constraintStart_toEndOf="@id/tvTemperature"
+                app:layout_constraintTop_toTopOf="@id/tvTemperature" />
 
-        <TextView
-            android:id="@+id/tvHour"
-            style="@style/defaultTextAppearance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/small_margin"
-            android:padding="@dimen/small_margin"
-            android:text="dd/mm/yyyy 8:00 PM"
-            app:layout_constraintStart_toStartOf="@id/tvTemperature"
-            app:layout_constraintTop_toBottomOf="@id/tvTemperature" />
+            <TextView
+                android:id="@+id/tvHour"
+                style="@style/defaultTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/small_margin"
+                android:padding="@dimen/small_margin"
+                android:text="not fetched"
+                app:layout_constraintStart_toStartOf="@id/tvTemperature"
+                app:layout_constraintTop_toBottomOf="@id/tvTemperature" />
 
-        <ImageView
-            android:id="@+id/weatherIcon"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:contentDescription="Current Weather Icon"
-            android:scaleType="centerInside"
-            app:layout_constraintBottom_toBottomOf="@id/tvHour"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvTemperature"
-            android:src="@drawable/ic_launcher_background" />
+            <ImageView
+                android:id="@+id/weatherIcon"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_launcher_background"
+                app:layout_constraintBottom_toBottomOf="@id/tvHour"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tvTemperature" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</com.google.android.material.card.MaterialCardView>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
