@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_marginHorizontal="2dp"
             android:paddingHorizontal="2dp"
-            android:paddingVertical="32dp">
+            android:paddingVertical="16dp">
 
             <TextView
                 android:id="@+id/tvTemperature"

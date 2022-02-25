@@ -1,8 +1,6 @@
 package com.ersubhadip.instantweather.adapters
 
-import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,31 +9,32 @@ import com.ersubhadip.instantweather.R
 import com.ersubhadip.instantweather.databinding.ItemHourForecastBinding
 import com.ersubhadip.instantweather.pojos.ForecastAdapterModel
 
-class ForecastAdapter(private val list: List<ForecastAdapterModel>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ForecastAdapter(private val list: List<ForecastAdapterModel>):RecyclerView.Adapter<ForecastAdapter.ViewHolder>() {
 
-    private lateinit var binding: ItemHourForecastBinding
+    lateinit var binding:ItemHourForecastBinding
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),
+            R.layout.item_hour_forecast,parent,false)
 
-        binding = DataBindingUtil.inflate(LayoutInflater.from(parent.context),R.layout.item_hour_forecast,parent,false)
-//        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_hour_forecast, parent, false)
-        return ForecastViewHolder(binding)
+        return ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-//        holder.bindData
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bindData(list[position].date, list[position].temp, list[position].icon)
     }
 
     override fun getItemCount(): Int {
         return list.size
     }
 
-    class ForecastViewHolder(private val binding: ItemHourForecastBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: ItemHourForecastBinding):RecyclerView.ViewHolder(binding.root){
 
-        fun bindData(date:String,temp:String, icon:String) {
-            binding.tvHour.text = date
+        fun bindData( date:String,temp:String, url:String){
+            binding.tvHour.text = "Time: ${date.substring(11)}"
             binding.tvTemperature.text = temp
-            Glide.with(itemView).load(icon).into(binding.weatherIcon)
+            Glide.with(binding.root).load("https:$url").into(binding.weatherIcon)
         }
+
     }
 }

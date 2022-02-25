@@ -1,8 +1,5 @@
 package com.ersubhadip.instantweather.viewmodel
 
-import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.ersubhadip.instantweather.Constants
 import com.ersubhadip.instantweather.api.RetrofitInstance
 import com.ersubhadip.instantweather.pojos.CurrentModel
@@ -19,7 +16,6 @@ class ApiRepository(private val api: RetrofitInstance) {
     suspend fun getForecast(
         q: String, days: Int, aqi: String, alerts: String
     ): Response<ForecastModel> {
-
 
         return api.apiInstance.getForecast(Constants.API_KEY, q, days, aqi, alerts)
     }

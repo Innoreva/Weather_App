@@ -23,8 +23,8 @@ import com.ersubhadip.instantweather.viewmodel.ForecastViewModelFactory
 class ForecastFragment : Fragment() {
     private lateinit var binding: FragmentForecastBinding
     lateinit var viewModel: ForecastViewModel
-    private lateinit var adapter:ForecastAdapter
-    private lateinit var list: List<ForecastAdapterModel>
+    private lateinit var adapter: ForecastAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,22 +51,22 @@ class ForecastFragment : Fragment() {
 
 
         binding.lifecycleOwner = this
-        viewModel.liveCity.observe(viewLifecycleOwner, Observer {
+        viewModel.liveCity.observe(viewLifecycleOwner, Observer { it ->
             if (!it.isNullOrBlank()) {
                 //Gives a Livedata of list of ForecastAdapterModel
                 viewModel.getForecast()
 
                 //setting the model list
                 //todo:set list to model
-                //setting data to adapter
+                viewModel.forecastDetails.observe(viewLifecycleOwner, Observer {
+                    val list:List<ForecastAdapterModel> = it
 
-                //todo:Loading starts for 2-3s
-                binding.weatherForecastRv.layoutManager = LinearLayoutManager(context) //doubt
-                binding.weatherForecastRv.adapter = ForecastAdapter(list) //todo:pass list
+                    //setting data to adapter
+                    //todo:Loading starts for 2-3s
+                    binding.weatherForecastRv.layoutManager = LinearLayoutManager(context) //doubt
+                    binding.weatherForecastRv.adapter = ForecastAdapter(list) //todo:pass list
 
-
-
-
+                })
             }
         })
 

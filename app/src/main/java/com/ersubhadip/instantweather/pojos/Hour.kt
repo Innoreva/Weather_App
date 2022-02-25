@@ -23,3 +23,4 @@ data class Hour(
     val wind_kph: Double,
     val windchill_c: Double
 )
+fun Hour.toForecastAdapterModel():ForecastAdapterModel = ForecastAdapterModel(time,temp_c.toString(),condition.icon)
