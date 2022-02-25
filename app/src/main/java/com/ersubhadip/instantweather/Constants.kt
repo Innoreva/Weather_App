@@ -6,14 +6,14 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
 import androidx.core.content.getSystemService
+import com.ersubhadip.instantweather.Constants.Companion.API_KEY
 import com.ersubhadip.instantweather.system.NetworkInstance.networkRequest
 
 class Constants {
     companion object{
         const val API_URL = "https://api.weatherapi.com/"
-        const val API_KEY = "1ab25b6036044fc0bf5122216220102"
+        const val API_KEY = BuildConfig.API_KEY
 
-        //todo:save api key to gradle safety
     }
     fun checkInternet(context:Context): Boolean{
         val networkCallback = object : ConnectivityManager.NetworkCallback(){
