@@ -4,6 +4,7 @@
 <div align="center">
 <img width="200px" height = "200px" src="https://user-images.githubusercontent.com/89024718/155819950-529caeff-f0b4-40dc-8774-f5de97cd58e5.png" alt="cover" />
 </div>
+
 ## About:
 This application is build on native android with Kotlin and xml. Its based on the Android Modern architecture MVVM and Jetpack components. This application has following features:-
 
