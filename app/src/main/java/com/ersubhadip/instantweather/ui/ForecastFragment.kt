@@ -59,7 +59,7 @@ class ForecastFragment : Fragment() {
                 //setting the model list
                 //todo:set list to model
                 viewModel.forecastDetails.observe(viewLifecycleOwner, Observer {
-                    val list:List<ForecastAdapterModel> = it
+                    val list: List<ForecastAdapterModel> = it
 
                     //setting data to adapter
                     //todo:Loading starts for 2-3s
