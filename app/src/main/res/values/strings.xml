@@ -5,7 +5,7 @@
 
     // Fragments
     <string name="homeFragment">Home</string>
-    <string name="graphFragment">Graph</string>
+    <string name="searchFragment">Search</string>
     <string name="forecastFragment">Forecast </string>
 
     //Air Quality Data

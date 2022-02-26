@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="vm"
             type="com.ersubhadip.instantweather.viewmodel.ForecastViewModel" />
@@ -15,17 +16,27 @@
         android:background="@color/blue_dark"
         tools:context=".ui.ForecastFragment">
 
+        <ProgressBar
+            android:id="@+id/loadingBar"
+            android:layout_width="54dp"
+            android:layout_height="54dp"
+            android:indeterminateTint="@color/white"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/headTv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/normal_margin"
             android:layout_marginTop="18dp"
+            android:fontFamily="@font/lato"
             android:text="Today's Forecast"
             android:textAlignment="center"
-            android:layout_marginHorizontal="@dimen/normal_margin"
             android:textColor="@color/white"
-            android:fontFamily="@font/lato"
             android:textSize="@dimen/font_heading"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,27 +47,25 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
+            android:fontFamily="@font/lato"
             android:text="@{`Place: ` + vm.liveCity}"
             android:textAlignment="center"
             android:textColor="@color/white"
-            android:textStyle="bold"
-            android:fontFamily="@font/lato"
             android:textSize="18sp"
-            app:layout_constraintTop_toBottomOf="@id/headTv"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="@id/headTv"
-            />
+            app:layout_constraintTop_toBottomOf="@id/headTv" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/weatherForecastRv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/placeTv"
             android:layout_marginTop="32dp"
             android:paddingBottom="120dp"
             android:requiresFadingEdge="vertical|horizontal"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/placeTv" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

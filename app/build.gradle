@@ -6,7 +6,7 @@ plugins {
 }
 
 def getApiKey(){
-    def Properties props = new Properties()
+    Properties props = new Properties()
     props.load(new FileInputStream(new File('apikey.properties')))
     return props['API_KEY']
 }
@@ -20,7 +20,6 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
         manifestPlaceholders= [API_KEY :getApiKey()]
 
     }
@@ -118,6 +117,7 @@ dependencies {
 //  Test helpers for LiveData
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
 
-    // easy permission library
-    implementation 'pub.devrel:easypermissions:3.0.0'
+    //Runtime Permissions
+    implementation "com.github.permissions-dispatcher:permissionsdispatcher:4.9.1"
+    kapt "com.github.permissions-dispatcher:permissionsdispatcher-processor:4.9.1"
 }
