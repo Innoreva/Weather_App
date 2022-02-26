@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ersubhadip.instantweather.R
 import com.ersubhadip.instantweather.adapters.ForecastAdapter
@@ -18,6 +19,9 @@ import com.ersubhadip.instantweather.pojos.ForecastAdapterModel
 import com.ersubhadip.instantweather.viewmodel.ApiRepository
 import com.ersubhadip.instantweather.viewmodel.ForecastViewModel
 import com.ersubhadip.instantweather.viewmodel.ForecastViewModelFactory
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 
 class ForecastFragment : Fragment() {
@@ -55,16 +59,20 @@ class ForecastFragment : Fragment() {
             if (!it.isNullOrBlank()) {
                 //Gives a Livedata of list of ForecastAdapterModel
                 viewModel.getForecast()
+//                binding.loadingBar = View.VISIBLE
 
-                //setting the model list
-                //todo:set list to model
+                binding.loadingBar.visibility = View.VISIBLE
+                //setting forecastList
                 viewModel.forecastDetails.observe(viewLifecycleOwner, Observer {
                     val list: List<ForecastAdapterModel> = it
 
                     //setting data to adapter
-                    //todo:Loading starts for 2-3s
                     binding.weatherForecastRv.layoutManager = LinearLayoutManager(context) //doubt
-                    binding.weatherForecastRv.adapter = ForecastAdapter(list) //todo:pass list
+                    binding.weatherForecastRv.adapter = ForecastAdapter(list)
+//                    lifecycleScope.launch(Dispatchers.Main) {
+//                        delay(1000L)
+                        binding.loadingBar.visibility = View.GONE
+//                    }
 
                 })
             }

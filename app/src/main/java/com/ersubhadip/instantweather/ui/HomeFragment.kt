@@ -7,9 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.ersubhadip.instantweather.R
@@ -57,12 +55,10 @@ class HomeFragment : Fragment() {
             }
         })
 
-
         binding.lifecycleOwner = this
 
         vm.liveCity.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrBlank()) {
-                // fake loading
                 binding.progressBar.visibility = View.VISIBLE
 
                 CoroutineScope(Dispatchers.IO).launch {
@@ -72,27 +68,23 @@ class HomeFragment : Fragment() {
 
                     }
                 }
-
-
             }
         })
 
         binding.refreshBtn.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
+                    CoroutineScope(Dispatchers.IO).launch {
+                        vm.updateWeather()
+                        withContext(Dispatchers.Main) {
 
-            CoroutineScope(Dispatchers.IO).launch{
-                vm.getCurrentWeatherVM()
-                withContext(Dispatchers.Main){
+                            binding.progressBar.visibility = View.GONE
+                        }
+                    }
 
-            CoroutineScope(Dispatchers.IO).launch {
-                vm.updateWeather()
-                withContext(Dispatchers.Main) {
-
-                    binding.progressBar.visibility = View.GONE
                 }
             }
 
         }
-    }
 
-}
+
+
