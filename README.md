@@ -26,7 +26,10 @@ This application is build on native android with Kotlin and xml. Its based on th
 <div align="center">
 <img width="20%" height = "50%" src="https://user-images.githubusercontent.com/89024718/155822140-dfbda82d-1260-4b6a-b6d6-8d8ea629d605.gif" alt="cover" />
 </div>
-<br><br><br>
+<br><br>
+## Download here:
+<br>
+<a href="/app/release/app_release.apk" download>Instant Weather</a>
 <div align="center">
 <h6>©-All rights reserved-Innoreva</h6>
 </div>
