@@ -1,13 +1,13 @@
 package com.ersubhadip.instantweather.ui
 
 import android.app.Application
-import android.graphics.Color
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import android.view.inputmethod.InputMethodManager
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -54,14 +54,29 @@ class SearchFragment : Fragment() {
 
         binding.searchBtn.setOnClickListener {
 
+
+            // keyboard will get disappeared after click
+            val inputMethodManager = getSystemService(requireContext(), InputMethodManager::class.java) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken , 0)
+
+            //loading starts
+           binding.indeterminateProgressBar.visibility = View.VISIBLE
+
             binding.indeterminateProgressBar.visibility = View.VISIBLE
 
+
+            CoroutineScope(Dispatchers.IO).launch {
             if (!TextUtils.isEmpty(binding.searchBar.text)) {
+
+
+
+
                 //Loading starts
                 binding.searchConstraints.setBackgroundColor(Color.parseColor("#0069c0"))
                 binding.indeterminateProgressBar.visibility = View.VISIBLE
 
                 lifecycleScope.launch((Dispatchers.IO)) {
+
                     viewModel.getWeather()
                     withContext(Dispatchers.Main) {
                         viewModel.imageUrl.observe(viewLifecycleOwner, Observer {
@@ -71,23 +86,40 @@ class SearchFragment : Fragment() {
                             }
                         })
                         binding.outputCard.visibility = View.VISIBLE
+
+
+
                         delay(1000L)
                         binding.indeterminateProgressBar.visibility = View.GONE
+
                     }
-                }
+
             } else {
-                binding.searchBar.error = "Please enter a place"
+                withContext(Dispatchers.Main) {
+                    binding.searchBar.error = "Please enter a place"
+                }
+            }
+                withContext(Dispatchers.Main){
+                    binding.indeterminateProgressBar.visibility = View.GONE
+
+                }
             }
         }
         binding.searchBar.setOnClickListener {
 
+
+//            val inutMethodManager = getSystemService(requireContext(), INPUT_METHOD_SERVICE::class.java) as InputMethodManager?
+//            inputMethodManager!!.hideSoftInputFromWindow(view.applicationWindowToken, 0)
+//
             //Removing the card on another search
-            binding.searchConstraints.setBackgroundDrawable(context?.let { it1 ->
-                ContextCompat.getDrawable(
-                    it1.applicationContext, R.drawable.ic_bg
-                )
-            })
+//            binding.searchConstraints.setBackgroundDrawable(context?.let { it1 ->
+//                ContextCompat.getDrawable(
+//                    it1.applicationContext, R.drawable.ic_bg
+//                )
+//            })
             binding.outputCard.visibility = View.GONE
+
         }
     }
+
 }

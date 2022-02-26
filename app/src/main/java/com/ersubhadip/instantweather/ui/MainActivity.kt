@@ -60,6 +60,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
     }
 
     private fun setFragment(fragment: Fragment, label: Int) {

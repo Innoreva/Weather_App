@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.ersubhadip.instantweather.R
@@ -38,6 +40,7 @@ class HomeFragment : Fragment() {
         val view = binding.root
         val repo = ApiRepository(RetrofitInstance)
         val factory = MainViewModelFactory(repo, context?.applicationContext as Application)
+
 
         vm = ViewModelProvider(this, factory)[MainViewModel::class.java]
         binding.mainViewModel = vm
@@ -76,14 +79,18 @@ class HomeFragment : Fragment() {
 
         binding.refreshBtn.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
+
+            CoroutineScope(Dispatchers.IO).launch{
+                vm.getCurrentWeatherVM()
+                withContext(Dispatchers.Main){
+
             CoroutineScope(Dispatchers.IO).launch {
                 vm.updateWeather()
                 withContext(Dispatchers.Main) {
+
                     binding.progressBar.visibility = View.GONE
                 }
             }
-
-//
 
         }
     }
