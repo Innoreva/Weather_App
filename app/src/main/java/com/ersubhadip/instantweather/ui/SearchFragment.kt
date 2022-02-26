@@ -20,7 +20,10 @@ import com.ersubhadip.instantweather.databinding.FragmentSearchBinding
 import com.ersubhadip.instantweather.viewmodel.ApiRepository
 import com.ersubhadip.instantweather.viewmodel.SearchViewModel
 import com.ersubhadip.instantweather.viewmodel.SearchViewModelFactory
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class SearchFragment : Fragment() {
@@ -70,15 +73,12 @@ class SearchFragment : Fragment() {
                         binding.outputCard.visibility = View.VISIBLE
                         delay(1000L)
                         binding.indeterminateProgressBar.visibility = View.GONE
-
                     }
-
                 }
             } else {
                 binding.searchBar.error = "Please enter a place"
             }
         }
-
         binding.searchBar.setOnClickListener {
 
             //Removing the card on another search
@@ -88,15 +88,6 @@ class SearchFragment : Fragment() {
                 )
             })
             binding.outputCard.visibility = View.GONE
-
         }
-
     }
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//
-//    }
-
-
 }

@@ -14,8 +14,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ersubhadip.instantweather.pojos.ForecastAdapterModel
-import com.ersubhadip.instantweather.pojos.Forecastday
-import com.ersubhadip.instantweather.pojos.Hour
 import com.ersubhadip.instantweather.pojos.toForecastAdapterModel
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -84,7 +82,7 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
 
     }
 
-//    Implemented Geocoder to get the cityName related to corresponding Latitude and Longitude
+    //    Implemented Geocoder to get the cityName related to corresponding Latitude and Longitude
     private fun getPlace(lat: Double, long: Double) {
         val addresses: List<Address>
         val geocoder = Geocoder(context, Locale.getDefault())
@@ -98,8 +96,7 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
         city.value = addresses.first().locality
     }
 
-
-//Getting Forecast Data for Today
+    //Getting Forecast Data for Today
     fun getForecast() {
         viewModelScope.launch {
             val response = repository.getForecast("Dhanbad", 1, "yes", "no")
@@ -107,7 +104,8 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
             if (response != null) {
                 if (response.isSuccessful) {
 
-                    forecast.value = response.body()?.forecast?.forecastday?.first()?.hour?.map {it.toForecastAdapterModel()}
+                    forecast.value =
+                        response.body()?.forecast?.forecastday?.first()?.hour?.map { it.toForecastAdapterModel() }
 
 
                 } else {
