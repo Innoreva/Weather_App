@@ -117,7 +117,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == 0 && grantResults.isNotEmpty()) {
             for (i in grantResults.indices) {
                 if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
-                    //todo:Dialog
+
                     val dialog = AlertDialog.Builder(this)
                     dialog.setTitle("Warning!")
                     dialog.setMessage("Are you sure won't give permission?")

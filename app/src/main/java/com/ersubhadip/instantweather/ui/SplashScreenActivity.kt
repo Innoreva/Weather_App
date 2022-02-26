@@ -16,7 +16,6 @@ import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
 
-    //todo:ViewBinding not getting applied in SplashActivity - Do Later
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
