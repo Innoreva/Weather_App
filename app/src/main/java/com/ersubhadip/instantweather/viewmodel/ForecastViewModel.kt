@@ -1,14 +1,11 @@
 package com.ersubhadip.instantweather.viewmodel
 
-import android.Manifest
 import android.app.Application
-import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -23,7 +20,6 @@ import java.util.*
 class ForecastViewModel(private val repository: ApiRepository, private val context: Application?) :
     ViewModel() {
 
-    private var PERMISSION_CODE = 1
     private lateinit var fusedLocationClient: FusedLocationProviderClient
 
     //Forecast Model Live Data
@@ -45,27 +41,6 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
     fun getLatLong() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(context!!)
-
-        if (ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_FINE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                context,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-            ) != PackageManager.PERMISSION_GRANTED
-        ) {
-
-            Toast.makeText(
-                context,
-                "NO Permission, Please Grant the Location permission",
-                Toast.LENGTH_LONG
-            ).show()
-
-            PERMISSION_CODE = 2
-            //TODO:CASE HANDLING FOR NOT GRANTING PERMISSION - Redirect to Settings
-        }
-
-        Log.d("CODE_#", PERMISSION_CODE.toString())
 
         fusedLocationClient.lastLocation
             .addOnSuccessListener { location: Location? ->

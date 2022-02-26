@@ -2,7 +2,6 @@ package com.ersubhadip.instantweather.pojos
 
 import com.google.gson.annotations.SerializedName
 
-//todo : Use Annotations for this POJO Class
 data class AirQuality(
     val co: Double,
     @SerializedName("gb-defra-index")
