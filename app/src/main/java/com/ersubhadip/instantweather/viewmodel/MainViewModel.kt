@@ -1,19 +1,17 @@
 package com.ersubhadip.instantweather.viewmodel
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.app.Application
-import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Address
 import android.location.Geocoder
 import android.location.Location
-import android.text.TextUtils
 import android.util.Log
 import android.widget.Toast
-import android.widget.Toast.LENGTH_LONG
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.ersubhadip.instantweather.pojos.AirQuality
 import com.ersubhadip.instantweather.pojos.Condition
 import com.ersubhadip.instantweather.pojos.Current
@@ -96,7 +94,6 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
     }
 
 
-
     fun hasLocationPermissions() :Boolean
     {
         if((ActivityCompat.checkSelfPermission(context!!, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) && (ActivityCompat.checkSelfPermission(context!!, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED))
@@ -143,29 +140,30 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
 
     suspend fun getCurrentWeatherVM() {
 
-            val response = city.value?.let { repository.getCurrentWeather(it, "yes") }
-            kotlinx.coroutines.withContext(Dispatchers.Main){
+        val response = city.value?.let { repository.getCurrentWeather(it, "yes") }
+        kotlinx.coroutines.withContext(Dispatchers.Main) {
             if (response != null) {
                 if (response.isSuccessful) {
 
                     weatherDetails.value = response.body()
 
                     //Getting Data to LiveData variables
-                    receivedLocation.value = "${weatherDetails.value!!.location.name }, ${weatherDetails.value!!.location.country}"
+                    receivedLocation.value =
+                        "${weatherDetails.value!!.location.name}, ${weatherDetails.value!!.location.country}"
                     temp.value = weatherDetails.value!!.current.temp_c
                     time.value = weatherDetails.value!!.location.localtime
                     air.value = weatherDetails.value!!.current.air_quality
                     current.value = weatherDetails.value!!.current
                     cond.value = weatherDetails.value!!.current.condition
-                    iconUrl.value ="https:${weatherDetails.value!!.current.condition.icon}"
+                    iconUrl.value = "https:${weatherDetails.value!!.current.condition.icon}"
                     updTime.value = "Last Updated: ${weatherDetails.value!!.current.last_updated}"
                     //end
 
                 } else {
                     Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_LONG).show()
                 }
-                }
             }
+        }
     }
     fun showToast(toastMessage :  String){
         Toast.makeText(context, toastMessage, Toast.LENGTH_LONG).show()
@@ -173,9 +171,5 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
 
 }
 
-
-
-
-    // todo:Null Response (404), Permissions (check and inflate Permission Denied), No internet -> Try Again (last implementation)
 
 

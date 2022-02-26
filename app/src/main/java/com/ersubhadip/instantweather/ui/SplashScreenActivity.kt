@@ -22,7 +22,7 @@ class SplashScreenActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
 
         //initialized Animation Utility Class
-        val animation = AnimationUtils.loadAnimation(applicationContext,R.anim.fade_in)
+        val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)
 
         //Icon Animation
         findViewById<LottieAnimationView>(R.id.weatherAnimation).startAnimation(animation)
@@ -32,13 +32,13 @@ class SplashScreenActivity : AppCompatActivity() {
 
 
         //TypeWriter Text
-         val typing = findViewById<TypeWriterView>(R.id.typeTv)
+        val typing = findViewById<TypeWriterView>(R.id.typeTv)
         typing.animateText("Get Live Weather Report \nAnytime, Anywhere")
         typing.setCharacterDelay(100L)
 
         //some junk yet important - Intent after Animations completes
         typing.setOnAnimationChangeListener(OnAnimationChangeListener {
-            val intent= Intent(this@SplashScreenActivity, MainActivity::class.java)
+            val intent = Intent(this@SplashScreenActivity, MainActivity::class.java)
             startActivity(intent)
             finish()
         })

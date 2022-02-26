@@ -18,7 +18,10 @@ import com.ersubhadip.instantweather.databinding.FragmentHomeBinding
 import com.ersubhadip.instantweather.viewmodel.ApiRepository
 import com.ersubhadip.instantweather.viewmodel.MainViewModel
 import com.ersubhadip.instantweather.viewmodel.MainViewModelFactory
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HomeFragment : Fragment() {
     lateinit var vm: MainViewModel
@@ -64,8 +67,8 @@ class HomeFragment : Fragment() {
 
                 CoroutineScope(Dispatchers.IO).launch {
                     vm.getCurrentWeatherVM()
-                    withContext(Dispatchers.Main){
-                        binding.progressBar.visibility= View.GONE
+                    withContext(Dispatchers.Main) {
+                        binding.progressBar.visibility = View.GONE
 
                     }
                 }
@@ -74,16 +77,20 @@ class HomeFragment : Fragment() {
             }
         })
 
-        binding.refreshBtn.setOnClickListener{
+        binding.refreshBtn.setOnClickListener {
             binding.progressBar.visibility = View.VISIBLE
+
             CoroutineScope(Dispatchers.IO).launch{
                 vm.getCurrentWeatherVM()
                 withContext(Dispatchers.Main){
+
+            CoroutineScope(Dispatchers.IO).launch {
+                vm.updateWeather()
+                withContext(Dispatchers.Main) {
+
                     binding.progressBar.visibility = View.GONE
                 }
             }
-
-//
 
         }
     }

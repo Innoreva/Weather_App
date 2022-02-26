@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 //todo : Use Annotations for this POJO Class
 data class AirQuality(
     val co: Double,
-   @SerializedName("gb-defra-index")
+    @SerializedName("gb-defra-index")
     val gb_defra_index: Int,
     val no2: Double,
     val o3: Double,

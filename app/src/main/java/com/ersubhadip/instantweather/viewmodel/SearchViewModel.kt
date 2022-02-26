@@ -44,8 +44,7 @@ class SearchViewModel(private val repository: ApiRepository, private val context
                         "${weatherDetails.value!!.location.name}, ${weatherDetails.value!!.location.country}"
                     url.value = "https:${weatherDetails.value!!.current.condition.icon}"
 
-                }
-                else {
+                } else {
 
                     Toast.makeText(
                         context,

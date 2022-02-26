@@ -1,7 +1,5 @@
 package com.ersubhadip.instantweather.api
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import com.ersubhadip.instantweather.pojos.CurrentModel
 import com.ersubhadip.instantweather.pojos.ForecastModel
 import retrofit2.Response
@@ -12,9 +10,19 @@ interface WeatherApiInterface {
 
     //Live Weather Query
     @GET("v1/current.json")
-    suspend fun getCurrent(@Query("key") key:String,@Query("q") q:String,@Query("aqi") aqi:String): Response<CurrentModel>
+    suspend fun getCurrent(
+        @Query("key") key: String,
+        @Query("q") q: String,
+        @Query("aqi") aqi: String
+    ): Response<CurrentModel>
 
     //Forecast Query
     @GET("v1/forecast.json")
-    suspend fun getForecast(@Query("key") key: String, @Query("q")q: String,@Query("days")days:Int,@Query("aqi")aqi: String,@Query("alerts")alerts:String):Response<ForecastModel>
+    suspend fun getForecast(
+        @Query("key") key: String,
+        @Query("q") q: String,
+        @Query("days") days: Int,
+        @Query("aqi") aqi: String,
+        @Query("alerts") alerts: String
+    ): Response<ForecastModel>
 }
