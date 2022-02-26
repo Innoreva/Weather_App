@@ -30,7 +30,7 @@ This application is build on native android with Kotlin and xml. Its based on th
 
 ## Download here:
 <br>
-<a href="app/release/app_release.apk" download>Instant Weather</a>
+<a href="https://github.com/Innoreva/Weather_App/blob/main/app/release/app-release.apk" download>Instant Weather</a>
 <br><br>
 <div align="center">
 <h6>©-All rights reserved-Innoreva</h6>
