@@ -2,7 +2,7 @@
 <h1>Instant Weather - Android App</h1>
 </div><br>
 <div align="center">
-<img width="300px" height = "300px" src="https://user-images.githubusercontent.com/89024718/155819950-529caeff-f0b4-40dc-8774-f5de97cd58e5.png" alt="cover" />
+<img width="200px" height = "200px" src="https://user-images.githubusercontent.com/89024718/155819950-529caeff-f0b4-40dc-8774-f5de97cd58e5.png" alt="cover" />
 </div>
 ## About:
 This application is build on native android with Kotlin and xml. Its based on the Android Modern architecture MVVM and Jetpack components. This application has following features:-
@@ -23,7 +23,7 @@ This application is build on native android with Kotlin and xml. Its based on th
 <br>
 
 <div align="center">
-<img width="20%" height = "50%" src="https://user-images.githubusercontent.com/89024718/155821894-d1650d58-979b-454b-9db6-e32d310ce648.gif" alt="cover" />
+<img width="20%" height = "50%" src="https://user-images.githubusercontent.com/89024718/155822140-dfbda82d-1260-4b6a-b6d6-8d8ea629d605.gif" alt="cover" />
 </div>
 <br><br><br>
 <div align="center">
