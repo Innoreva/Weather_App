@@ -211,6 +211,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="8dp"
+                    android:layout_gravity="center_horizontal"
                     android:text="Wind Speed (kmp)"
                     android:textSize="18sp" />
 
@@ -219,7 +220,6 @@
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:elevation="@dimen/big_margin"
-
                     android:src="@drawable/ic_wind"
                     app:tint="@color/white" />
 
