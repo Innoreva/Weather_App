@@ -5,19 +5,18 @@ import android.os.Bundle
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.lifecycleScope
+import androidx.appcompat.app.AppCompatDelegate
 import com.airbnb.lottie.LottieAnimationView
 import com.ersubhadip.instantweather.R
 import com.nitish.typewriterview.TypeWriterView
 import com.nitish.typewriterview.TypeWriterView.OnAnimationChangeListener
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO) //forcing light theme
 
         //initialized Animation Utility Class
         val animation = AnimationUtils.loadAnimation(applicationContext, R.anim.fade_in)

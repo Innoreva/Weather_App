@@ -37,6 +37,7 @@
             android:name=".ui.MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
+            android:launchMode="singleTop"
             >
 
         </activity>
