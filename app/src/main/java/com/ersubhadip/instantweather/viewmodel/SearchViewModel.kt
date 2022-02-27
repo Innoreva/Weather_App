@@ -1,7 +1,6 @@
 package com.ersubhadip.instantweather.viewmodel
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -21,7 +20,6 @@ class SearchViewModel(private val repository: ApiRepository, private val context
     val finalWeatherReport: LiveData<CurrentModel>
         get() = weatherDetails
 
-
     //Location Live data
     private var receivedLocation = MutableLiveData<String>()
     val finalLocation: LiveData<String>
@@ -36,22 +34,18 @@ class SearchViewModel(private val repository: ApiRepository, private val context
     suspend fun getWeather() {
 
         val response = input.value?.let { repository.getCurrentWeather(it, "yes") }
-        if (response != null) {
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    weatherDetails.value = response.body()
+        withContext(Dispatchers.Main)
+        {
+            try {
+                weatherDetails.value = response?.body()
+                withContext(Dispatchers.Main) {
                     receivedLocation.value =
                         "${weatherDetails.value!!.location.name}, ${weatherDetails.value!!.location.country}"
                     url.value = "https:${weatherDetails.value!!.current.condition.icon}"
-
-                } else {
-
-                    Toast.makeText(
-                        context,
-                        "Something Went Wrong. Check your input",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
+            } catch (e: Exception) {
+                url.value = "null"
+                input.value = ""
             }
         }
     }

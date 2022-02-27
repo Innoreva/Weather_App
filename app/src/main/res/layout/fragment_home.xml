@@ -128,7 +128,9 @@
                     android:fontFamily="@font/lato"
                     android:text="@{mainViewModel.updateTime}"
                     android:textColor="@color/white"
-                    android:textStyle="italic" />
+                     />
+
+<!--                text was italic-->
 
                 <ImageView
                     android:id="@+id/refreshBtn"
@@ -142,6 +144,51 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llHumidity"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/ll"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/llWindSpeed"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:layout_marginHorizontal="2dp"
+                android:padding="@dimen/small_margin"
+                android:background="@drawable/card">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Humidiy"
+                    android:padding="8dp"
+                    android:textSize="22sp"
+                    style="@style/defaultTextAppearance"/>
+                <ImageView
+                    android:id="@+id/icHumidity"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:elevation="@dimen/big_margin"
+
+                    android:src="@drawable/ic_humidity"
+                    app:tint="@color/white" />
+
+                <TextView
+                    android:id="@+id/humidityTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:text="36"
+                    android:fontFamily="@font/lato"
+                    android:letterSpacing="0.1"
+                    android:padding="2dp"
+                    android:text="@{Integer.toString(mainViewModel.currentWeather.humidity)}"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    />
+            </LinearLayout>
+            <!--
             <ImageView
                 android:id="@+id/icHumidity"
                 android:layout_width="44dp"
@@ -171,7 +218,56 @@
                 app:layout_constraintEnd_toEndOf="@id/icHumidity"
                 app:layout_constraintStart_toStartOf="@id/icHumidity"
                 app:layout_constraintTop_toBottomOf="@id/icHumidity" />
+-->
+            <LinearLayout
+                android:id="@+id/llWindSpeed"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="@id/llHumidity"
+                app:layout_constraintStart_toEndOf="@id/llHumidity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/llHumidity"
+                android:orientation="vertical"
 
+                android:layout_marginHorizontal="2dp"
+                android:padding="@dimen/small_margin"
+                android:gravity="center"
+                android:background="@drawable/card">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wind Speed"
+                    android:padding="8dp"
+                    android:textSize="22sp"
+                    style="@style/defaultTextAppearance"/>
+                <ImageView
+                    android:id="@+id/icWind"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:elevation="@dimen/big_margin"
+
+                    android:src="@drawable/ic_wind"
+                    app:tint="@color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/windTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/lato"
+                    android:text="@{Double.toString(mainViewModel.currentWeather.wind_kph)}"
+                    tools:text="36"
+                    android:letterSpacing="0.1"
+                    android:padding="2dp"
+                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"/>
+
+            </LinearLayout>
+
+            <!--
             <ImageView
                 android:id="@+id/icWind"
                 android:layout_width="44dp"
@@ -201,7 +297,7 @@
                 app:layout_constraintEnd_toEndOf="@id/icWind"
                 app:layout_constraintStart_toStartOf="@id/icWind"
                 app:layout_constraintTop_toBottomOf="@id/icWind" />
-
+-->
             <TextView
                 android:id="@+id/airQualityHead"
                 android:layout_width="match_parent"
@@ -214,10 +310,12 @@
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_heading"
+                android:elevation="@dimen/big_margin"
+
                 android:textStyle="normal"
-                app:layout_constraintEnd_toEndOf="@id/windTv"
-                app:layout_constraintStart_toStartOf="@id/humidityTv"
-                app:layout_constraintTop_toBottomOf="@id/humidityTv" />
+                app:layout_constraintEnd_toEndOf="@id/llHumidity"
+                app:layout_constraintStart_toStartOf="@id/llWindSpeed"
+                app:layout_constraintTop_toBottomOf="@id/llHumidity" />
 
 
             <LinearLayout
@@ -292,6 +390,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
+                android:elevation="@dimen/big_margin"
+
                 android:layout_width="54dp"
                 android:layout_height="54dp"
                 />
