@@ -25,7 +25,6 @@ import kotlinx.coroutines.withContext
 class HomeFragment : Fragment() {
     lateinit var vm: MainViewModel
     lateinit var binding: FragmentHomeBinding
-    val animation = AnimationUtils.loadAnimation(context, R.anim.fade_in)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -85,12 +84,6 @@ class HomeFragment : Fragment() {
                         binding.airQualityHead.visibility = View.VISIBLE
                         binding.llAir.visibility = View.VISIBLE
                         binding.ll.visibility = View.VISIBLE
-                        binding.MainCard.startAnimation(animation)
-                        binding.llHumidity.startAnimation(animation)
-                        binding.llWindSpeed.startAnimation(animation)
-                        binding.airQualityHead.startAnimation(animation)
-                        binding.llAir.startAnimation(animation)
-                        binding.ll.startAnimation(animation)
 
                     }
                 }
