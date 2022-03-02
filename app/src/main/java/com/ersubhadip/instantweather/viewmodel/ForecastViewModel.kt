@@ -49,6 +49,9 @@ class ForecastViewModel(private val repository: ApiRepository, private val conte
                 var lat = location!!.latitude
                 var long = location.longitude
 
+                // junk
+                Toast.makeText(context, "\tCo-ordinates\n${lat.toString()} , ${long.toString()} ", Toast.LENGTH_SHORT).show()
+
                 getPlace(lat, long)
 
 

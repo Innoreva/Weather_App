@@ -96,6 +96,9 @@ class MainViewModel(private val repository: ApiRepository, val context: Applicat
                 Log.d("LOC#", location.toString())
                 val lat = location!!.latitude
                 val long = location.longitude
+                // junk
+                Toast.makeText(context, "\tCo-ordinates\n${lat.toString()} , ${long.toString()} ", Toast.LENGTH_SHORT).show()
+
                 getPlace(lat, long)
             }
 
